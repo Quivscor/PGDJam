@@ -141,4 +141,5 @@ public enum ActorMovementState
 {
     GROUNDED = 0,
     AIRBORNE = 1,
+    FORCEDMOVE = 2,
 }

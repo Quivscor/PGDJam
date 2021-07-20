@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2415243032419386989}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,10 +80,10 @@ MonoBehaviour:
     m_Bits: 256
   softPlatformTag: SoftPlatform
   state: 0
-  moveSpeed: 6
+  moveSpeed: 5
   maxJumpHeight: 3
   variableJumpVelocityMultiplier: 0.5
-  timeToJumpApex: 0.3
+  timeToJumpApex: 0.42
   smoothTime: 0.1
   smoothTimeAirborne: 0.2
 --- !u!1 &3079808167301846287

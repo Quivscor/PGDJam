@@ -17,6 +17,10 @@ public class PlayerMovement : PlatformerActor
     private float maxJumpVelocity;
     private float gravity;
 
+    private bool isForcedMoving = false;
+    private Vector2 forcedMoveVelocity;
+    private float forcedMoveTimeCurrent;
+
     private void Start()
     {
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -25,23 +29,34 @@ public class PlayerMovement : PlatformerActor
 
     private void Update()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        if(Input.GetKeyDown(KeyCode.Space) && state != ActorMovementState.AIRBORNE)
+        float targetVelocity;
+        if (!isForcedMoving)
         {
-            velocity.y += maxJumpVelocity;
-            state = ActorMovementState.AIRBORNE;
-        }
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            velocity.y *= variableJumpVelocityMultiplier;
-        }
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        float targetVelocity = input.x * moveSpeed;
+            if (Input.GetKeyDown(KeyCode.Space) && state != ActorMovementState.AIRBORNE)
+            {
+                velocity.y += maxJumpVelocity;
+                state = ActorMovementState.AIRBORNE;
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                velocity.y *= variableJumpVelocityMultiplier;
+            }
+            targetVelocity = input.x * moveSpeed;
+        }
+        else
+        {
+            targetVelocity = 0;
+            forcedMoveTimeCurrent -= Time.deltaTime;
+        }
+        
         if(state == ActorMovementState.AIRBORNE)
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocityXSmoothing, smoothTimeAirborne);
-        else
+        else if(state == ActorMovementState.GROUNDED)
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocityXSmoothing, smoothTime);
+        else if(state == ActorMovementState.FORCEDMOVE)
+            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocityXSmoothing, .3f);
         velocity.y += gravity * Time.deltaTime;
 
         Move(velocity * Time.deltaTime);
@@ -51,9 +66,23 @@ public class PlayerMovement : PlatformerActor
             velocity.y = 0;
             if (collisions.below)
                 state = ActorMovementState.GROUNDED;
-            else
+            else if(!isForcedMoving)
                 state = ActorMovementState.AIRBORNE;
         }
-            
+        if(isForcedMoving)
+        {
+            forcedMoveVelocity = velocity;
+            if (forcedMoveTimeCurrent <= 0)
+                isForcedMoving = false;
+        }
+    }
+
+    public void ForceMove(Vector2 force, float time = 1f)
+    {
+        isForcedMoving = true;
+        forcedMoveVelocity = force;
+        state = ActorMovementState.FORCEDMOVE;
+        velocity = force;
+        forcedMoveTimeCurrent = time;
     }
 }
