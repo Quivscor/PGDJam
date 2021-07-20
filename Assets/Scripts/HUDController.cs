@@ -11,7 +11,7 @@ public class HUDController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Image hpBar;
-    [SerializeField] private Image[] manaOrbs;
+    [SerializeField] public Image[] manaOrbs;
     [SerializeField] private Image faithBar;
     [SerializeField] private TextMeshProUGUI upgradePointsText;
 

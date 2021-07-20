@@ -66,6 +66,15 @@ public class StatsController : Character
         }
         manaChanged.Invoke();
     }
+    public void AddMaxMana()
+    {
+        maxMana += 1;
+        if (maxMana > HUDController.Instance.manaOrbs.Length)
+        {
+            maxMana = HUDController.Instance.manaOrbs.Length;
+        }
+        manaChanged.Invoke();
+    }
 
     public void SpendMana(float value)
     {
