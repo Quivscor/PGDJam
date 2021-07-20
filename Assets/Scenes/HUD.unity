@@ -2828,8 +2828,8 @@ MonoBehaviour:
   state: 0
   moveSpeed: 6
   maxJumpHeight: 3
-  minJumpHeight: 2
-  timeToJumpApex: 0.4
+  variableJumpVelocityMultiplier: 0.5
+  timeToJumpApex: 0.3
   smoothTime: 0.1
   smoothTimeAirborne: 0.2
 --- !u!1001 &6581397148448128483
@@ -3169,7 +3169,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8956406263678807055, guid: bc77b358c1eb5f14a8d7e8ba16342ef4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc77b358c1eb5f14a8d7e8ba16342ef4, type: 3}
 --- !u!1001 &9181336949084947328
 PrefabInstance:

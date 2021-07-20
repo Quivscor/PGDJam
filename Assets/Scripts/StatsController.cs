@@ -39,6 +39,7 @@ public class StatsController : Character
         Mana = maxMana;
         UpgradePoints = 0;
         Faith = 0;
+        HUDController.Instance.UpdateWholeUI();
     }
 
     #region HP

@@ -7,6 +7,8 @@ using TMPro;
 
 public class HUDController : MonoBehaviour
 {
+    public static HUDController Instance;
+
     [Header("References")]
     [SerializeField] private Image hpBar;
     [SerializeField] private Image[] manaOrbs;
@@ -15,7 +17,8 @@ public class HUDController : MonoBehaviour
 
     private void Awake()
     {
-
+        if (Instance == null)
+            Instance = this;
     }
 
     void Start()
@@ -24,7 +27,6 @@ public class HUDController : MonoBehaviour
         StatsController.Instance.manaChanged += UpdateMana;
         StatsController.Instance.faithChanged += UpdateFaith;
         StatsController.Instance.upgradePointsChanged += UpdateUpgradePoints;
-        UpdateWholeUI();
     }
 
     public void UpdateWholeUI()
