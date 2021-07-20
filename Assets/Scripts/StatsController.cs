@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class StatsController : Character
 {
     public static StatsController Instance = null;
@@ -13,9 +13,19 @@ public class StatsController : Character
     private int upgradePoints;
     private float faith;
 
+    public float HP { get => hp; set => hp = value; }
     public float Mana { get => mana; set => mana = value; }
     public int UpgradePoints { get => upgradePoints; set => upgradePoints = value; }
     public float Faith { get => faith; set => faith = value; }
+
+    public float MaxFaith { get => maxFaith; }
+    public float MaxHP { get => maxHp;}
+    public float MaxMana { get => maxMana;}
+
+    public Action hpChanged;
+    public Action manaChanged;
+    public Action upgradePointsChanged;
+    public Action faithChanged;
 
     private void Awake()
     {
@@ -30,6 +40,20 @@ public class StatsController : Character
         UpgradePoints = 0;
         Faith = 0;
     }
+
+    #region HP
+    public override void GetHit(float value)
+    {
+        base.GetHit(value);
+        hpChanged.Invoke();
+    }
+
+    public override void AddHp(float value)
+    {
+        base.AddHp(value);
+        hpChanged.Invoke();
+    }
+    #endregion
 
     #region Mana
     public void AddMana(float value)

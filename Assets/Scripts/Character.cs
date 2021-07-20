@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
         hp = maxHp;
     }
 
-    public void GetHit(float value)
+    public virtual void GetHit(float value)
     {
         hp -= value;
 
@@ -22,7 +22,7 @@ public class Character : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    public void AddHp(float value)
+    public virtual void AddHp(float value)
     {
         hp += value;
 
