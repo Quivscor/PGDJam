@@ -7,7 +7,7 @@ public class PlayerMovement : PlatformerActor
     [Header("Movement data")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float maxJumpHeight;
-    [SerializeField] private float minJumpHeight;
+    [SerializeField] private float variableJumpVelocityMultiplier;
     [SerializeField] private float timeToJumpApex;
     [SerializeField] private float smoothTime;
     [SerializeField] private float smoothTimeAirborne;
@@ -15,14 +15,12 @@ public class PlayerMovement : PlatformerActor
     private Vector2 velocity;
     private float velocityXSmoothing;
     private float maxJumpVelocity;
-    private float minJumpVelocity;
     private float gravity;
 
     private void Start()
     {
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
     }
 
     private void Update()
@@ -36,8 +34,7 @@ public class PlayerMovement : PlatformerActor
         }
         if(Input.GetKeyUp(KeyCode.Space))
         {
-            if(velocity.y > minJumpVelocity)
-                velocity.y = minJumpHeight;
+            velocity.y *= variableJumpVelocityMultiplier;
         }
 
         float targetVelocity = input.x * moveSpeed;
@@ -54,6 +51,8 @@ public class PlayerMovement : PlatformerActor
             velocity.y = 0;
             if (collisions.below)
                 state = ActorMovementState.GROUNDED;
+            else
+                state = ActorMovementState.AIRBORNE;
         }
             
     }

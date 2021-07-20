@@ -2291,7 +2291,7 @@ MonoBehaviour:
   state: 0
   moveSpeed: 6
   maxJumpHeight: 3
-  minJumpHeight: 2
-  timeToJumpApex: 0.4
+  variableJumpVelocityMultiplier: 0.5
+  timeToJumpApex: 0.3
   smoothTime: 0.1
   smoothTimeAirborne: 0.2
