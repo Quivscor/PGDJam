@@ -63,6 +63,7 @@ public class StatsController : Character
         {
             Mana = maxMana;
         }
+        manaChanged.Invoke();
     }
 
     public void SpendMana(float value)
@@ -70,6 +71,7 @@ public class StatsController : Character
         Mana -= value;
         if (Mana < 0)
             Mana = 0;
+        manaChanged.Invoke();
     }
 
     public bool HasEnoughMana(float value)
@@ -90,6 +92,7 @@ public class StatsController : Character
             Faith = maxFaith;
             Debug.Log("MAXIMUM FAITH WAS ACHIEVED.");
         }
+        faithChanged.Invoke();
     }
     #endregion
 
@@ -97,6 +100,7 @@ public class StatsController : Character
     public void AddUpgradePoints(int value)
     {
         UpgradePoints += value;
+        upgradePointsChanged.Invoke();
     }
 
     public void SpendUpgradePoints(int value)
@@ -104,6 +108,7 @@ public class StatsController : Character
         UpgradePoints -= value;
         if (UpgradePoints < 0)
             UpgradePoints = 0;
+        upgradePointsChanged.Invoke();
     }
 
     public bool HasEnoughUpgradePoints(int value)

@@ -15,15 +15,24 @@ public class HUDController : MonoBehaviour
 
     private void Awake()
     {
-        StatsController.Instance.hpChanged += UpdateHP;
-        StatsController.Instance.manaChanged += UpdateMana;
-        StatsController.Instance.faithChanged += UpdateFaith;
-        StatsController.Instance.upgradePointsChanged += UpdateUpgradePoints;
+
     }
 
     void Start()
     {
-        
+        StatsController.Instance.hpChanged += UpdateHP;
+        StatsController.Instance.manaChanged += UpdateMana;
+        StatsController.Instance.faithChanged += UpdateFaith;
+        StatsController.Instance.upgradePointsChanged += UpdateUpgradePoints;
+        UpdateWholeUI();
+    }
+
+    public void UpdateWholeUI()
+    {
+        UpdateHP();
+        UpdateMana();
+        UpdateFaith();
+        UpdateUpgradePoints();
     }
 
     public void UpdateHP()
@@ -33,12 +42,15 @@ public class HUDController : MonoBehaviour
 
     public void UpdateMana()
     {
-        for (int i = 0; i < StatsController.Instance.MaxMana; i++)
+        for (int i = 0; i < manaOrbs.Length; i++)
         {
-            if (i <= StatsController.Instance.Mana)
+            if (i < StatsController.Instance.Mana && StatsController.Instance.Mana <= StatsController.Instance.MaxMana)
                 manaOrbs[i].color = Color.cyan;
-            else
+            else if(i < StatsController.Instance.MaxMana)
                 manaOrbs[i].color = Color.gray;
+            else
+                manaOrbs[i].color = new Color(0,0,0,0);
+
         }
     }
 
@@ -49,6 +61,6 @@ public class HUDController : MonoBehaviour
 
     public void UpdateUpgradePoints()
     {
-        upgradePointsText.text = StatsController.Instance.UpgradePoints.ToString();
+        upgradePointsText.text = StatsController.Instance.UpgradePoints.ToString() + " wolne pkt";
     }
 }
