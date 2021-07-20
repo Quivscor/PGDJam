@@ -47,11 +47,11 @@ public class HUDController : MonoBehaviour
         for (int i = 0; i < manaOrbs.Length; i++)
         {
             if (i < StatsController.Instance.Mana && StatsController.Instance.Mana <= StatsController.Instance.MaxMana)
-                manaOrbs[i].color = Color.cyan;
-            else if(i < StatsController.Instance.MaxMana)
-                manaOrbs[i].color = Color.gray;
+                manaOrbs[i].color = new Color(0.5849056f, 0f, 0f, 1f);
+            else if (i < StatsController.Instance.MaxMana)
+                manaOrbs[i].color = Color.white;
             else
-                manaOrbs[i].color = new Color(0,0,0,0);
+                manaOrbs[i].color = new Color(0, 0, 0, 0);
 
         }
     }
