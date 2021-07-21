@@ -8,6 +8,12 @@ public class CinematicController : MonoBehaviour
 
     public Animator cinematicAnimator;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+
     public void StartCinematic()
     {
         cinematicAnimator.SetTrigger("Start");
