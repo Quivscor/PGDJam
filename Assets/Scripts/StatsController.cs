@@ -13,14 +13,23 @@ public class StatsController : Character
     private int upgradePoints;
     private float faith;
 
+    // CROWS
+    private int maxCrowsNumber;
+    private float timeToSpawnCrow;
+    private float crowDamage;
+
     public float HP { get => hp; set => hp = value; }
     public float Mana { get => mana; set => mana = value; }
     public int UpgradePoints { get => upgradePoints; set => upgradePoints = value; }
     public float Faith { get => faith; set => faith = value; }
-
     public float MaxFaith { get => maxFaith; }
     public float MaxHP { get => maxHp;}
     public float MaxMana { get => maxMana;}
+
+    // CROWS GETTERS && SETTERS
+    public int MaxCrowsNumber { get => maxCrowsNumber; set => maxCrowsNumber = value; }
+    public float TimeToSpawnCrow { get => timeToSpawnCrow; set => timeToSpawnCrow = value; }
+    public float CrowDamage { get => crowDamage; set => crowDamage = value; }
 
     public Action hpChanged;
     public Action manaChanged;
@@ -39,7 +48,28 @@ public class StatsController : Character
         Mana = maxMana;
         UpgradePoints = 0;
         Faith = 0;
+        MaxCrowsNumber = 1;
+        TimeToSpawnCrow = 3f;
+        CrowDamage = 10;
         HUDController.Instance.UpdateWholeUI();
+        UpdateDebugDisplay();
+    }
+
+    public void UpdateDebugDisplay()
+    {
+        if (TestingButtons.Instance == null)
+            return;
+
+        TestingButtons.Instance.statsText.text = 
+              "Health: " + HP
+            + "\nMana: " + Mana
+            + "\nMax mana: " + MaxMana
+            + "\nUpgrade points: " + UpgradePoints
+            + "\nFaith: " + Faith
+            + "\nCrow damage: " + CrowDamage
+            + "\nMax crows number: " + MaxCrowsNumber
+            + "\nTime to spawn crow: " + TimeToSpawnCrow;
+
     }
 
     #region HP
@@ -47,12 +77,14 @@ public class StatsController : Character
     {
         base.GetHit(value);
         hpChanged.Invoke();
+        UpdateDebugDisplay();
     }
 
     public override void AddHp(float value)
     {
         base.AddHp(value);
         hpChanged.Invoke();
+        UpdateDebugDisplay();
     }
     #endregion
 
@@ -65,6 +97,7 @@ public class StatsController : Character
             Mana = maxMana;
         }
         manaChanged.Invoke();
+        UpdateDebugDisplay();
     }
     public void AddMaxMana()
     {
@@ -74,6 +107,7 @@ public class StatsController : Character
             maxMana = HUDController.Instance.manaOrbs.Length;
         }
         manaChanged.Invoke();
+        UpdateDebugDisplay();
     }
 
     public void SpendMana(float value)
@@ -82,6 +116,7 @@ public class StatsController : Character
         if (Mana < 0)
             Mana = 0;
         manaChanged.Invoke();
+        UpdateDebugDisplay();
     }
 
     public bool HasEnoughMana(float value)
@@ -103,6 +138,7 @@ public class StatsController : Character
             Debug.Log("MAXIMUM FAITH WAS ACHIEVED.");
         }
         faithChanged.Invoke();
+        UpdateDebugDisplay();
     }
     #endregion
 
@@ -111,6 +147,7 @@ public class StatsController : Character
     {
         UpgradePoints += value;
         upgradePointsChanged.Invoke();
+        UpdateDebugDisplay();
     }
 
     public void SpendUpgradePoints(int value)
@@ -119,6 +156,7 @@ public class StatsController : Character
         if (UpgradePoints < 0)
             UpgradePoints = 0;
         upgradePointsChanged.Invoke();
+        UpdateDebugDisplay();
     }
 
     public bool HasEnoughUpgradePoints(int value)
@@ -128,5 +166,28 @@ public class StatsController : Character
         else
             return false;
     }
-    #endregion 
+    #endregion
+
+    #region Crows
+    public void UpgradeCrowDamage(float bonus)
+    {
+        CrowDamage += bonus;
+        UpdateDebugDisplay();
+    }
+
+    public void UpgradeCrowCooldown(float bonus)
+    {
+        TimeToSpawnCrow -= bonus;
+        if (TimeToSpawnCrow <= 0)
+            TimeToSpawnCrow = 0.25f;
+        UpdateDebugDisplay();
+    }
+
+    public void UpgradeCrowsMaxNumber()
+    {
+        MaxCrowsNumber++;
+        UpdateDebugDisplay();
+    }
+
+    #endregion
 }
