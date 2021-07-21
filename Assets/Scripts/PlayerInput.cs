@@ -28,6 +28,8 @@ public class PlayerInput : MonoBehaviour
         inputs.axis = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         inputs.jump = Input.GetKeyDown(KeyCode.Space);
         inputs.releasedJump = Input.GetKeyUp(KeyCode.Space);
+        inputs.fire = Input.GetMouseButtonDown(0);
+        inputs.mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     public static RegisteredInputs GetPlayerInput()
@@ -46,10 +48,12 @@ public class RegisteredInputs
     public bool jump;
     public bool releasedJump;
     public Vector2 axis;
+    public bool fire;
+    public Vector2 mousePos;
 
     public void Reset()
     {
-        jump = releasedJump = false;
+        jump = releasedJump = fire = false;
         axis = Vector2.zero;
     }
 
