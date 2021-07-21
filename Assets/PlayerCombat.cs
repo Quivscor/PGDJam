@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PlayerCombat : MonoBehaviour
     public float rotateSpeed;
     private float rotateAngle;
     public float rotateRadius;
+
+    public Action<float> TakeDamage;
 
     void Start()
     {
@@ -51,8 +54,13 @@ public class PlayerCombat : MonoBehaviour
             Projectile projectile = projectiles[0];
             projectiles.RemoveAt(0);
             projectile.transform.parent = null;
-            projectile.Construct(0);
+            projectile.Construct(0, this.tag);
             projectile.GetComponent<Rigidbody2D>().AddForce((inputs.mousePos - (Vector2)this.transform.position).normalized * projectileForce);
         }
+    }
+
+    public void SendTakeDamageEvent(float damage)
+    {
+        TakeDamage?.Invoke(damage);
     }
 }

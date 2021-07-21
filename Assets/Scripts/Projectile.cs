@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    private string userTag;
+
     private float damage;
     private Collider2D collider;
     private Rigidbody2D rb2d;
@@ -18,9 +20,10 @@ public class Projectile : MonoBehaviour
         collider.enabled = false;
     }
 
-    public void Construct(float damage)
+    public void Construct(float damage, string userTag)
     {
         this.damage = damage;
+        this.userTag = userTag;
         collider.enabled = true;
 
         startTimer = true;
@@ -38,13 +41,18 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag(userTag) && collision.CompareTag("NoCollisions"))
             return;
 
         Character enemy;
+        PlayerCombat pc;
         if(collision.TryGetComponent<Character>(out enemy))
         {
             enemy.GetHit(damage);
+        }
+        else if(collision.TryGetComponent<PlayerCombat>(out pc))
+        {
+            pc.SendTakeDamageEvent(damage);
         }
 
         rb2d.velocity = Vector2.zero;
