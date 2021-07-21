@@ -32,18 +32,19 @@ public class PlayerMovement : PlatformerActor
         float targetVelocity;
         if (!isForcedMoving)
         {
-            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            RegisteredInputs inputs = PlayerInput.GetPlayerInput();
+            inputs.DisplayInput();
 
-            if (Input.GetKeyDown(KeyCode.Space) && state != ActorMovementState.AIRBORNE)
+            if (inputs.jump && state != ActorMovementState.AIRBORNE)
             {
                 velocity.y += maxJumpVelocity;
                 state = ActorMovementState.AIRBORNE;
             }
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (inputs.releasedJump)
             {
                 velocity.y *= variableJumpVelocityMultiplier;
             }
-            targetVelocity = input.x * moveSpeed;
+            targetVelocity = inputs.axis.x * moveSpeed;
         }
         else
         {
