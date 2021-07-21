@@ -12,6 +12,7 @@ public class StoryEvent : MonoBehaviour
     public bool wasPlayed = false;
     public void StartEvent()
     {
+        PlayerInput.BlockPlayerInput(true);
         CinematicController.Instance.StartCinematic();
         eventObject.SetActive(true);
     }
@@ -21,6 +22,7 @@ public class StoryEvent : MonoBehaviour
         CinematicController.Instance.EndCinematic();
         wasPlayed = true;
         eventObject.SetActive(false);
+        PlayerInput.BlockPlayerInput(false);
     }
 
     public void ChosenOption(int option)

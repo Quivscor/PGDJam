@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    public static PlayerInput Instance;
+
     public static bool lockControls = false;
     public static RegisteredInputs inputs;
 
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+
         inputs = new RegisteredInputs();
     }
 
