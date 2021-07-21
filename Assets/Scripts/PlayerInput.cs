@@ -20,10 +20,10 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        inputs.Reset();
+
         if (lockControls)
             return;
-
-        inputs.Reset();
 
         inputs.axis = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         inputs.jump = Input.GetKeyDown(KeyCode.Space);
