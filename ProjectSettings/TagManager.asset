@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SoftPlatform
   - NoCollisions
+  - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX

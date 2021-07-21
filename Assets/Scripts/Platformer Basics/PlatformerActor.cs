@@ -20,7 +20,7 @@ public class PlatformerActor : MonoBehaviour
     public string softPlatformTag;
     public ActorMovementState state;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         col2d = GetComponent<BoxCollider2D>();
         origins = new RaycastOrigins();

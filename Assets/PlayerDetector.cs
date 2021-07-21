@@ -7,9 +7,9 @@ public class PlayerDetector : MonoBehaviour
 {
     public Action<Transform> OnPlayerDetected;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.transform.CompareTag("Player"))
-            OnPlayerDetected?.Invoke(collision.transform.root);
+        if (other.transform.CompareTag("Player"))
+            OnPlayerDetected?.Invoke(other.transform.root);
     }
 }
