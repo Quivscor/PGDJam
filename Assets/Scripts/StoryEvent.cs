@@ -5,7 +5,8 @@ using TMPro;
 using System;
 public class StoryEvent : MonoBehaviour
 {
-    public GameObject eventObject;
+    public GameObject eventHolder;
+    public GameObject spritesHolder;
     public EventRewards[] rewards;
     public TextMeshProUGUI eventName;
 
@@ -14,15 +15,16 @@ public class StoryEvent : MonoBehaviour
     {
         PlayerInput.BlockPlayerInput(true);
         CinematicController.Instance.StartCinematic();
-        eventObject.SetActive(true);
+        eventHolder.SetActive(true);
     }
 
     public void EndEvent()
     {
         CinematicController.Instance.EndCinematic();
         wasPlayed = true;
-        eventObject.SetActive(false);
+        eventHolder.SetActive(false);
         PlayerInput.BlockPlayerInput(false);
+        spritesHolder.SetActive(false);
     }
 
     public void ChosenOption(int option)
