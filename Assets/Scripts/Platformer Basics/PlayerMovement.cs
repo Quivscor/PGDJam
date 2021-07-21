@@ -33,7 +33,6 @@ public class PlayerMovement : PlatformerActor
         if (!isForcedMoving)
         {
             RegisteredInputs inputs = PlayerInput.GetPlayerInput();
-            inputs.DisplayInput();
 
             if (inputs.jump && state != ActorMovementState.AIRBORNE)
             {

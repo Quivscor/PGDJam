@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
     {
         this.damage = damage;
         this.userTag = userTag;
-        collider.enabled = true;
+        StartCoroutine(EnableCollisions());
 
         startTimer = true;
     }
@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(userTag) && collision.CompareTag("NoCollisions"))
+        if (collision.CompareTag(userTag) || collision.CompareTag("NoCollisions") || collision.CompareTag("Projectile"))
             return;
 
         Character enemy;
@@ -57,5 +57,11 @@ public class Projectile : MonoBehaviour
 
         rb2d.velocity = Vector2.zero;
         Destroy(this.gameObject, .2f);
+    }
+
+    public IEnumerator EnableCollisions()
+    {
+        yield return new WaitForSeconds(.1f);
+        collider.enabled = true;
     }
 }

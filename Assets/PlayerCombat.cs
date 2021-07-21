@@ -7,9 +7,7 @@ public class PlayerCombat : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public int maxProjectileCount;
     public float projectileForce;
-    public float projectileRespawnTime;
     private float projectileRespawnTimeCurrent;
     List<Projectile> projectiles;
     public Projectile projectilePrefab;
@@ -31,7 +29,7 @@ public class PlayerCombat : MonoBehaviour
     {
         float time = Time.deltaTime;
         projectileRespawnTimeCurrent += time;
-        if(projectileRespawnTimeCurrent >= projectileRespawnTime && projectiles.Count < maxProjectileCount)
+        if(projectileRespawnTimeCurrent >= StatsController.Instance.TimeToSpawnCrow && projectiles.Count < StatsController.Instance.MaxCrowsNumber)
         {
             projectileRespawnTimeCurrent = 0;
             projectiles.Add(Instantiate(projectilePrefab, projectileHolder));
@@ -54,7 +52,7 @@ public class PlayerCombat : MonoBehaviour
             Projectile projectile = projectiles[0];
             projectiles.RemoveAt(0);
             projectile.transform.parent = null;
-            projectile.Construct(0, this.tag);
+            projectile.Construct(StatsController.Instance.CrowDamage, this.tag);
             projectile.GetComponent<Rigidbody2D>().AddForce((inputs.mousePos - (Vector2)this.transform.position).normalized * projectileForce);
         }
     }

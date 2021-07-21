@@ -40,6 +40,8 @@ public class StatsController : Character
     {
         if (Instance == null)
             Instance = this;
+
+        FindObjectOfType<PlayerCombat>().TakeDamage += GetHit;
     }
 
     public override void Start()
