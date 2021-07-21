@@ -61,7 +61,8 @@ public class StatsController : Character
             return;
 
         TestingButtons.Instance.statsText.text = 
-              "Health: " + HP
+              "HP: " + HP
+            + "\nMax HP: " + MaxHP
             + "\nMana: " + Mana
             + "\nMax mana: " + MaxMana
             + "\nUpgrade points: " + UpgradePoints
@@ -83,6 +84,13 @@ public class StatsController : Character
     public override void AddHp(float value)
     {
         base.AddHp(value);
+        hpChanged.Invoke();
+        UpdateDebugDisplay();
+    }
+
+    public void AddMaxHP(float value)
+    {
+        maxHp += value;
         hpChanged.Invoke();
         UpdateDebugDisplay();
     }
