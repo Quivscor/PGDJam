@@ -399,8 +399,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Rozw\xF3j"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e9aea5e81d2029449fae64d63b8e629, type: 2}
+  m_sharedMaterial: {fileID: -6596893118213509316, guid: 2e9aea5e81d2029449fae64d63b8e629,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -859,8 +860,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2 wolne pkt
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e9aea5e81d2029449fae64d63b8e629, type: 2}
+  m_sharedMaterial: {fileID: -6596893118213509316, guid: 2e9aea5e81d2029449fae64d63b8e629,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
