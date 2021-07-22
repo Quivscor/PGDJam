@@ -17,7 +17,8 @@ public class FlyingEnemy : PlatformerActor
     private Vector2 originPoint;
     private bool isMoving = true;
     public float lockTime = 1.0f;
-    private Vector2 oldPosition;
+    private float timeSinceLastMove;
+    private float randomTime;
     private Vector2 moveTarget;
     public float minMoveRadius;
     public float maxMoveRadius;
@@ -28,9 +29,11 @@ public class FlyingEnemy : PlatformerActor
 
         character = GetComponent<Character>();
         GetComponentInChildren<PlayerDetector>().OnPlayerDetected += AggroOnPlayer;
+        GetComponentInChildren<PlayerDetector>().OnPlayerLeaveAggroRange += UnAggro;
 
         originPoint = (Vector2)this.transform.position;
         moveTarget = originPoint + Random.insideUnitCircle * Random.Range(minMoveRadius, maxMoveRadius);
+        randomTime = Random.Range(0, attackCd / 2f);
     }
 
     private void Update()
@@ -40,12 +43,14 @@ public class FlyingEnemy : PlatformerActor
             float time = Time.deltaTime;
 
             //attacking
+            timeSinceLastMove += time;
             attackCdCurrent += time;
             if(attackCdCurrent >= attackCd)
             {
                 attackCdCurrent = 0;
                 Attack();
                 isMoving = false;
+                randomTime = Random.Range(0, attackCd/2f);
                 StartCoroutine(UnlockMovement());
             }
             //movement
@@ -63,22 +68,22 @@ public class FlyingEnemy : PlatformerActor
 
     private void DecideAndMove()
     {
-        if (Vector2.Distance(moveTarget, (Vector2)this.transform.position) < .2f)
+        if (timeSinceLastMove >= randomTime || Vector2.Distance(moveTarget, transform.position) < .1f)
         {
-            oldPosition = moveTarget;
             moveTarget = originPoint + Random.insideUnitCircle * Random.Range(minMoveRadius, maxMoveRadius);
+            timeSinceLastMove = 0;
         }
         Move((moveTarget - (Vector2)this.transform.position).normalized * moveSpeed * Time.deltaTime);
-    }
-
-    private void MoveAroundPlayer()
-    {
-
     }
 
     public void AggroOnPlayer(Transform player)
     {
         target = player;
+    }
+
+    public void UnAggro()
+    {
+        target = null;
     }
 
     private void Attack()
