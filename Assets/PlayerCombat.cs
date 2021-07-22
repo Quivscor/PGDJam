@@ -12,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
     List<Projectile> projectiles;
     public Projectile projectilePrefab;
     public Transform projectileHolder;
+    public AudioClip crowSpawnSound;
+    public AudioSource crowSpawnSource;
 
     public float rotateSpeed;
     private float rotateAngle;
@@ -34,6 +36,7 @@ public class PlayerCombat : MonoBehaviour
         {
             projectileRespawnTimeCurrent = 0;
             projectiles.Add(Instantiate(projectilePrefab, projectileHolder));
+            crowSpawnSource.PlayOneShot(crowSpawnSound);
         }
 
         rotateAngle += rotateSpeed * time;
