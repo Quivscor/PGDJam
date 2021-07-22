@@ -12,7 +12,7 @@ public class Upgrade : MonoBehaviour
     public TextMeshProUGUI costText;
     public TextMeshProUGUI levelText;
     public Button buyButton;
-
+    public AudioClip purchaseSound;
 
     private int cost = 5;
     private int level = 0;
@@ -103,7 +103,7 @@ public class Upgrade : MonoBehaviour
         levelText.text = "Poziom " + level;
         costText.text = "Koszt " + cost;
 
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().PlayOneShot(purchaseSound);
 
         CanBuySkill();
     }

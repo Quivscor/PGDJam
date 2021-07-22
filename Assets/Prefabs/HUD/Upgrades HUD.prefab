@@ -456,6 +456,7 @@ MonoBehaviour:
   costText: {fileID: 2389670651101254815}
   levelText: {fileID: 5769678962418820667}
   buyButton: {fileID: 2290206846604085997}
+  purchaseSound: {fileID: 8300000, guid: eaa27c896bb1cdf4194afa0f426fb6fb, type: 3}
 --- !u!82 &7942179796331100645
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1016,6 +1017,7 @@ MonoBehaviour:
   costText: {fileID: 3544662843988152376}
   levelText: {fileID: 6086866462812342723}
   buyButton: {fileID: 2768164247230433421}
+  purchaseSound: {fileID: 8300000, guid: eaa27c896bb1cdf4194afa0f426fb6fb, type: 3}
 --- !u!82 &7138032633448994471
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2487,6 +2489,7 @@ MonoBehaviour:
   costText: {fileID: 6657870525309365513}
   levelText: {fileID: 1883074655348451772}
   buyButton: {fileID: 4648505839351333178}
+  purchaseSound: {fileID: 8300000, guid: eaa27c896bb1cdf4194afa0f426fb6fb, type: 3}
 --- !u!82 &4333447772032689188
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3584,6 +3587,7 @@ MonoBehaviour:
   costText: {fileID: 4125520400299263593}
   levelText: {fileID: 595640433886975752}
   buyButton: {fileID: 8757832629479504333}
+  purchaseSound: {fileID: 8300000, guid: eaa27c896bb1cdf4194afa0f426fb6fb, type: 3}
 --- !u!82 &7364662599378420958
 AudioSource:
   m_ObjectHideFlags: 0
