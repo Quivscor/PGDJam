@@ -61,7 +61,7 @@ public class Projectile : MonoBehaviour
 
     public IEnumerator EnableCollisions()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.2f);
         collider.enabled = true;
     }
 }
