@@ -28,10 +28,13 @@ public class PlayerMovement : PlatformerActor
     private Vector2 forcedMoveVelocity;
     private float forcedMoveTimeCurrent;
 
+    private PlayerVisuals playerVisuals;
+
     private void Start()
     {
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+        playerVisuals = GetComponent<PlayerVisuals>();
     }
 
     private void Update()
@@ -65,7 +68,7 @@ public class PlayerMovement : PlatformerActor
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocityXSmoothing, .3f);
 
         //dash
-        if(inputs.dash && dashCdCurrent <= 0)
+        if(inputs.dash && dashCdCurrent <= 0 && !hasDashedAirborne)
         {
             velocity.x = dashForce * Mathf.Sign(inputs.axis.x);
             dashCdCurrent = dashCd;
@@ -73,6 +76,8 @@ public class PlayerMovement : PlatformerActor
             velocity.y = 0;
             if (state == ActorMovementState.AIRBORNE)
                 hasDashedAirborne = true;
+
+            state = ActorMovementState.DASH;
         }
 
         if (dashTimeCurrent > 0)
@@ -100,6 +105,11 @@ public class PlayerMovement : PlatformerActor
                 isForcedMoving = false;
         }
         dashCdCurrent -= Time.deltaTime;
+    }
+
+    private void LateUpdate()
+    {
+        playerVisuals.HandleAnimation(velocity, state);
     }
 
     public void ForceMove(Vector2 force, float time = 1f)

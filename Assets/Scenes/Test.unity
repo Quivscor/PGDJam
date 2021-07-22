@@ -807,6 +807,24 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &368066533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2415243032419386983, guid: 44e01666d9cfc294e8deeb1a1e39a40d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2415243031666157604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &368066538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368066533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612a86a47da8b3840b7bb1f58c88e829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &382518990
 GameObject:
   m_ObjectHideFlags: 0
@@ -6816,36 +6834,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415243032419386989, guid: 44e01666d9cfc294e8deeb1a1e39a40d,
-        type: 3}
-      propertyPath: dashCd
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415243032419386989, guid: 44e01666d9cfc294e8deeb1a1e39a40d,
-        type: 3}
-      propertyPath: dashForce
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415243032419386989, guid: 44e01666d9cfc294e8deeb1a1e39a40d,
-        type: 3}
-      propertyPath: maxJumpHeight
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415243032419386989, guid: 44e01666d9cfc294e8deeb1a1e39a40d,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415243032419386989, guid: 44e01666d9cfc294e8deeb1a1e39a40d,
-        type: 3}
-      propertyPath: timeToJumpApex
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2415243032419386989, guid: 44e01666d9cfc294e8deeb1a1e39a40d,
-        type: 3}
-      propertyPath: dashTime
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44e01666d9cfc294e8deeb1a1e39a40d, type: 3}
