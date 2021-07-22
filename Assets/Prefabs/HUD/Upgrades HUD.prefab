@@ -327,7 +327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Obra\u017Cenia Kruk\xF3w"
+  m_text: "Ilo\u015B\u0107 Kruk\xF3w"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e9aea5e81d2029449fae64d63b8e629, type: 2}
   m_sharedMaterial: {fileID: -6596893118213509316, guid: 2e9aea5e81d2029449fae64d63b8e629,
@@ -451,8 +451,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc940443009db04abaa9cbdc79b4db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillType: 2
-  bonus: 10
+  skillType: 5
+  bonus: 1
   costText: {fileID: 2389670651101254815}
   levelText: {fileID: 5769678962418820667}
   buyButton: {fileID: 2290206846604085997}
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Koszt 1
+  m_text: Koszt 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e9aea5e81d2029449fae64d63b8e629, type: 2}
   m_sharedMaterial: {fileID: -6596893118213509316, guid: 2e9aea5e81d2029449fae64d63b8e629,
@@ -1688,7 +1688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Koszt 1
+  m_text: Koszt 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e9aea5e81d2029449fae64d63b8e629, type: 2}
   m_sharedMaterial: {fileID: -6596893118213509316, guid: 2e9aea5e81d2029449fae64d63b8e629,
@@ -2780,7 +2780,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Koszt 1
+  m_text: Koszt 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e9aea5e81d2029449fae64d63b8e629, type: 2}
   m_sharedMaterial: {fileID: -6596893118213509316, guid: 2e9aea5e81d2029449fae64d63b8e629,
@@ -3580,7 +3580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillType: 1
-  bonus: 25
+  bonus: 1
   costText: {fileID: 4125520400299263593}
   levelText: {fileID: 595640433886975752}
   buyButton: {fileID: 8757832629479504333}
@@ -3744,7 +3744,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Koszt 1
+  m_text: Koszt 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e9aea5e81d2029449fae64d63b8e629, type: 2}
   m_sharedMaterial: {fileID: -6596893118213509316, guid: 2e9aea5e81d2029449fae64d63b8e629,

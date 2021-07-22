@@ -14,7 +14,7 @@ public class Upgrade : MonoBehaviour
     public Button buyButton;
 
 
-    private int cost = 1;
+    private int cost = 5;
     private int level = 0;
     private int maxLevel = 5;
 
@@ -58,6 +58,12 @@ public class Upgrade : MonoBehaviour
             StatsController.Instance.UpgradeCrowCooldown(bonus);
         }
 
+        if (skillType == SkillType.MaxCrowsNumber)
+        {
+            StatsController.Instance.SpendUpgradePoints(cost);
+            StatsController.Instance.UpgradeCrowsMaxNumber();
+        }
+
         LevelUpSkill();
     }
 
@@ -92,7 +98,7 @@ public class Upgrade : MonoBehaviour
     {
         level++;
         //cost = level + 1;
-        cost = 1;
+        cost += 5;
 
         levelText.text = "Poziom " + level;
         costText.text = "Koszt " + cost;
@@ -108,5 +114,7 @@ public enum SkillType
     Health,
     Mana,
     CrowsDamage,
-    CrowsCooldown
+    CrowsCooldown,
+    CrowsSpeed,
+    MaxCrowsNumber
 }
