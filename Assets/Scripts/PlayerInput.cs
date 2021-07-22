@@ -30,6 +30,7 @@ public class PlayerInput : MonoBehaviour
         inputs.releasedJump = Input.GetKeyUp(KeyCode.Space);
         inputs.fire = Input.GetMouseButtonDown(0);
         inputs.mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        inputs.dash = Input.GetKeyDown(KeyCode.LeftShift);
     }
 
     public static RegisteredInputs GetPlayerInput()
@@ -49,11 +50,12 @@ public class RegisteredInputs
     public bool releasedJump;
     public Vector2 axis;
     public bool fire;
+    public bool dash;
     public Vector2 mousePos;
 
     public void Reset()
     {
-        jump = releasedJump = fire = false;
+        jump = releasedJump = fire = dash = false;
         axis = Vector2.zero;
     }
 

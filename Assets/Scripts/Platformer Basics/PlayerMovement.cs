@@ -12,6 +12,13 @@ public class PlayerMovement : PlatformerActor
     [SerializeField] private float smoothTime;
     [SerializeField] private float smoothTimeAirborne;
 
+    [SerializeField] private float dashCd;
+    [SerializeField] private float dashForce;
+    [SerializeField] private float dashTime;
+    private float dashTimeCurrent;
+    private bool hasDashedAirborne = false;
+    private float dashCdCurrent;
+
     private Vector2 velocity;
     private float velocityXSmoothing;
     private float maxJumpVelocity;
@@ -30,10 +37,9 @@ public class PlayerMovement : PlatformerActor
     private void Update()
     {
         float targetVelocity;
+        RegisteredInputs inputs = PlayerInput.GetPlayerInput();
         if (!isForcedMoving)
         {
-            RegisteredInputs inputs = PlayerInput.GetPlayerInput();
-
             if (inputs.jump && state != ActorMovementState.AIRBORNE)
             {
                 velocity.y += maxJumpVelocity;
@@ -57,7 +63,22 @@ public class PlayerMovement : PlatformerActor
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocityXSmoothing, smoothTime);
         else if(state == ActorMovementState.FORCEDMOVE)
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocityXSmoothing, .3f);
-        velocity.y += gravity * Time.deltaTime;
+
+        //dash
+        if(inputs.dash && dashCdCurrent <= 0)
+        {
+            velocity.x += dashForce * Mathf.Sign(velocity.x);
+            dashCdCurrent = dashCd;
+            dashTimeCurrent = dashTime;
+            velocity.y = 0;
+            if (state == ActorMovementState.AIRBORNE)
+                hasDashedAirborne = true;
+        }
+
+        if (dashTimeCurrent > 0)
+            dashTimeCurrent -= Time.deltaTime;
+        else
+            velocity.y += gravity * Time.deltaTime;
 
         Move(velocity * Time.deltaTime);
 
@@ -65,7 +86,10 @@ public class PlayerMovement : PlatformerActor
         {
             velocity.y = 0;
             if (collisions.below)
+            {
                 state = ActorMovementState.GROUNDED;
+                hasDashedAirborne = false;
+            }
             else if(!isForcedMoving)
                 state = ActorMovementState.AIRBORNE;
         }
@@ -75,6 +99,7 @@ public class PlayerMovement : PlatformerActor
             if (forcedMoveTimeCurrent <= 0)
                 isForcedMoving = false;
         }
+        dashCdCurrent -= Time.deltaTime;
     }
 
     public void ForceMove(Vector2 force, float time = 1f)
