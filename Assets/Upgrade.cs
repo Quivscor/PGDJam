@@ -13,8 +13,16 @@ public class Upgrade : MonoBehaviour
     public TextMeshProUGUI levelText;
     public Button buyButton;
 
-    private int cost;
-    private int level;
+
+    private int cost = 1;
+    private int level = 0;
+    private int maxLevel = 5;
+
+    private void Start()
+    {
+        StatsController.Instance.upgradePointsChanged += CanUpgrade;
+        CanBuySkill();
+    }
 
     public void OnEnable()
     {
@@ -29,7 +37,7 @@ public class Upgrade : MonoBehaviour
         if(skillType == SkillType.Health)
         {
             StatsController.Instance.SpendUpgradePoints(cost);
-            StatsController.Instance.AddHp(bonus);
+            StatsController.Instance.AddMaxHP(bonus);
         }
 
         if (skillType == SkillType.Mana)
@@ -47,7 +55,7 @@ public class Upgrade : MonoBehaviour
         if (skillType == SkillType.CrowsCooldown)
         {
             StatsController.Instance.SpendUpgradePoints(cost);
-            StatsController.Instance.UpgradeCrowCooldown(bonus * -1f);
+            StatsController.Instance.UpgradeCrowCooldown(bonus);
         }
 
         LevelUpSkill();
@@ -56,7 +64,7 @@ public class Upgrade : MonoBehaviour
 
     public bool CanBuySkill()
     {
-        if (cost <= StatsController.Instance.UpgradePoints)
+        if (cost <= StatsController.Instance.UpgradePoints && level <= maxLevel - 1)
         {
             buyButton.interactable = true;
             return true;
@@ -68,13 +76,28 @@ public class Upgrade : MonoBehaviour
         }
     }
 
+    public void CanUpgrade()
+    {
+        if (cost <= StatsController.Instance.UpgradePoints && level <= maxLevel - 1)
+        {
+            buyButton.interactable = true;
+        }
+        else
+        {
+            buyButton.interactable = false;
+        }
+    }
+
     private void LevelUpSkill()
     {
         level++;
-        cost = level + 1;
+        //cost = level + 1;
+        cost = 1;
 
         levelText.text = "Poziom " + level;
         costText.text = "Koszt " + cost;
+
+        CanBuySkill();
     }
 
 }

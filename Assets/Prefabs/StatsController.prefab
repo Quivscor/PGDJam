@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  maxMana: 3
+  maxMana: 2
   maxFaith: 100

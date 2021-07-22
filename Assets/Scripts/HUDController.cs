@@ -14,6 +14,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] public Image[] manaOrbs;
     [SerializeField] private Image faithBar;
     [SerializeField] private TextMeshProUGUI upgradePointsText;
+    [SerializeField] private GameObject upgradesHUD;
 
     private void Awake()
     {
@@ -27,6 +28,13 @@ public class HUDController : MonoBehaviour
         StatsController.Instance.manaChanged += UpdateMana;
         StatsController.Instance.faithChanged += UpdateFaith;
         StatsController.Instance.upgradePointsChanged += UpdateUpgradePoints;
+    }
+
+    public void ToggleUpgrades(bool toggle)
+    {
+        upgradesHUD.SetActive(toggle);
+        PlayerInput.BlockPlayerInput(toggle);
+
     }
 
     public void UpdateWholeUI()

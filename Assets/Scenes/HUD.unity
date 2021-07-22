@@ -1582,6 +1582,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &582762382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8458409989714929634, guid: 7677ad4db2b98ec479b932facecdc05a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5268624201037526226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &694495035
 GameObject:
   m_ObjectHideFlags: 0
@@ -6704,6 +6710,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2023509244 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6581397147668585241, guid: bc77b358c1eb5f14a8d7e8ba16342ef4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6581397148448128483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7261050f1d696af4791122f443465a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2024603914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7021,6 +7039,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 56721252419797249, guid: 7677ad4db2b98ec479b932facecdc05a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2023509244}
+    - target: {fileID: 56721252419797249, guid: 7677ad4db2b98ec479b932facecdc05a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleUpgrades
+      objectReference: {fileID: 0}
     - target: {fileID: 373993737303910359, guid: 7677ad4db2b98ec479b932facecdc05a,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -7315,11 +7343,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4913581984948564061, guid: bc77b358c1eb5f14a8d7e8ba16342ef4,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -118.799805
-      objectReference: {fileID: 0}
     - target: {fileID: 5641886171744656204, guid: bc77b358c1eb5f14a8d7e8ba16342ef4,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -7400,6 +7423,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6581397147668585241, guid: bc77b358c1eb5f14a8d7e8ba16342ef4,
+        type: 3}
+      propertyPath: upgradesHUD
+      value: 
+      objectReference: {fileID: 582762382}
     - target: {fileID: 6581397147668585242, guid: bc77b358c1eb5f14a8d7e8ba16342ef4,
         type: 3}
       propertyPath: m_Name
