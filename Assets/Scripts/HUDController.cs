@@ -15,6 +15,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Image faithBar;
     [SerializeField] private TextMeshProUGUI upgradePointsText;
     [SerializeField] private GameObject upgradesHUD;
+    [SerializeField] private Animator vignetteAnimator;
 
     private void Awake()
     {
@@ -43,6 +44,11 @@ public class HUDController : MonoBehaviour
         UpdateMana();
         UpdateFaith();
         UpdateUpgradePoints();
+    }
+
+    public void GetHitVignette()
+    {
+        vignetteAnimator.SetTrigger("Blink");
     }
 
     public void UpdateHP()

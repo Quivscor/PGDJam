@@ -79,6 +79,7 @@ public class StatsController : Character
     public override void GetHit(float value)
     {
         base.GetHit(value);
+        HUDController.Instance.GetHitVignette();
         hpChanged.Invoke();
         UpdateDebugDisplay();
     }
