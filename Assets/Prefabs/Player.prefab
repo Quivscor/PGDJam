@@ -83,12 +83,15 @@ MonoBehaviour:
     m_Bits: 256
   softPlatformTag: SoftPlatform
   state: 0
-  moveSpeed: 5
-  maxJumpHeight: 3
+  moveSpeed: 10
+  maxJumpHeight: 6
   variableJumpVelocityMultiplier: 0.5
-  timeToJumpApex: 0.42
+  timeToJumpApex: 0.5
   smoothTime: 0.1
   smoothTimeAirborne: 0.2
+  dashCd: 3
+  dashForce: 15
+  dashTime: 0.2
 --- !u!114 &714440691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,9 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bae844488c128f4a86b6a341d1d8c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxProjectileCount: 1
   projectileForce: 400
-  projectileRespawnTime: 1
   projectilePrefab: {fileID: 2277619346821865261, guid: 79e60ea06426ee041b3cd89780918a57,
     type: 3}
   projectileHolder: {fileID: 4208373260570643920}
@@ -131,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7268413250434322582}
   - component: {fileID: 4031442648279909286}
+  - component: {fileID: 2729538461528161086}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -202,6 +204,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2729538461528161086
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079808167301846287}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5cfa092390d9e7349b73d762a50db9e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5089349797094313112
 GameObject:
   m_ObjectHideFlags: 0
