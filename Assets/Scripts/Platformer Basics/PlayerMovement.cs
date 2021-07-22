@@ -67,7 +67,7 @@ public class PlayerMovement : PlatformerActor
         //dash
         if(inputs.dash && dashCdCurrent <= 0)
         {
-            velocity.x += dashForce * Mathf.Sign(velocity.x);
+            velocity.x = dashForce * Mathf.Sign(inputs.axis.x);
             dashCdCurrent = dashCd;
             dashTimeCurrent = dashTime;
             velocity.y = 0;

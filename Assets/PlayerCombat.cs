@@ -28,8 +28,9 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         float time = Time.deltaTime;
-        projectileRespawnTimeCurrent += time;
-        if(projectileRespawnTimeCurrent >= StatsController.Instance.TimeToSpawnCrow && projectiles.Count < StatsController.Instance.MaxCrowsNumber)
+        if(projectiles.Count < StatsController.Instance.MaxCrowsNumber)
+            projectileRespawnTimeCurrent += time;
+        if(projectileRespawnTimeCurrent >= StatsController.Instance.TimeToSpawnCrow)
         {
             projectileRespawnTimeCurrent = 0;
             projectiles.Add(Instantiate(projectilePrefab, projectileHolder));
