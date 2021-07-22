@@ -55,7 +55,7 @@ public class StatsController : Character
     {
         base.Start();
         Mana = maxMana;
-        UpgradePoints = 0;
+        UpgradePoints = 25;
         Faith = 0;
         MaxCrowsNumber = 1;
         TimeToSpawnCrow = 3f;

@@ -58,12 +58,13 @@ public class HUDController : MonoBehaviour
 
         for (int i = 0; i < healthOrbs.Length; i++)
         {
+            healthOrbs[i].gameObject.SetActive(true);
             if (i < StatsController.Instance.HP && StatsController.Instance.HP <= StatsController.Instance.MaxHP)
                 healthOrbs[i].color = new Color(0.5849056f, 0f, 0f, 1f);
             else if (i < StatsController.Instance.MaxHP)
                 healthOrbs[i].color = Color.white;
             else
-                healthOrbs[i].color = new Color(0, 0, 0, 0);
+                healthOrbs[i].gameObject.SetActive(false);
 
         }
     }
