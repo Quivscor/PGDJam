@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Projectile : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Projectile : MonoBehaviour
 
     private float timer;
     private bool startTimer = false;
+
+    public Action FiredProjectile;
 
     private void Awake()
     {
@@ -29,6 +32,8 @@ public class Projectile : MonoBehaviour
         StartCoroutine(EnableCollisions());
 
         startTimer = true;
+
+        FiredProjectile?.Invoke();
     }
 
     public void Update()
