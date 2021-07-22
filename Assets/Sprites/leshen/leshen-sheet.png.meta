@@ -44,6 +44,27 @@ TextureImporter:
   - first:
       213: -4961902726144365411
     second: leshen-sheet_13
+  - first:
+      213: 1784033667151562589
+    second: leshen-sheet_0
+  - first:
+      213: 3837304951246422419
+    second: leshen-sheet_1
+  - first:
+      213: -6913495532102777259
+    second: leshen-sheet_2
+  - first:
+      213: 6485238686084011559
+    second: leshen-sheet_3
+  - first:
+      213: 1100855859710481303
+    second: leshen-sheet_4
+  - first:
+      213: -4457373407291695557
+    second: leshen-sheet_5
+  - first:
+      213: -747562425032936563
+    second: leshen-sheet_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -191,8 +212,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e65e61f74a815140800000000000000
-      internalID: 4706695127176730344
+      spriteID: d5708e50b2922c810800000000000000
+      internalID: 1784033667151562589
       vertices: []
       indices: 
       edges: []
@@ -212,8 +233,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d1a2cb0d4c0ad280800000000000000
-      internalID: -9017881778806677035
+      spriteID: 39104e1b588d04530800000000000000
+      internalID: 3837304951246422419
       vertices: []
       indices: 
       edges: []
@@ -233,8 +254,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18c4468b40743ab10800000000000000
-      internalID: 1991513545826913409
+      spriteID: 55683cc51745e00a0800000000000000
+      internalID: -6913495532102777259
       vertices: []
       indices: 
       edges: []
@@ -254,8 +275,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4803ac38f72819c0800000000000000
-      internalID: -3956368325522290612
+      spriteID: 72698a78932300a50800000000000000
+      internalID: 6485238686084011559
       vertices: []
       indices: 
       edges: []
@@ -275,8 +296,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fca9e725f234ecda0800000000000000
-      internalID: -5922722589419070769
+      spriteID: 79353f26296074f00800000000000000
+      internalID: 1100855859710481303
       vertices: []
       indices: 
       edges: []
@@ -296,8 +317,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6ada49c17142cf90800000000000000
-      internalID: -6934908519232906643
+      spriteID: b3e1b13908a3422c0800000000000000
+      internalID: -4457373407291695557
       vertices: []
       indices: 
       edges: []
@@ -317,8 +338,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dca6a47b93f319230800000000000000
-      internalID: 3643763090640235213
+      spriteID: d837b786fef10a5f0800000000000000
+      internalID: -747562425032936563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leshen-sheet_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ae6efb35cf9c0740800000000000000
+      internalID: 5119642545877315236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leshen-sheet_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9deb73ae164489220800000000000000
+      internalID: 2492817581081607897
       vertices: []
       indices: 
       edges: []
