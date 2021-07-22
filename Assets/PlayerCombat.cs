@@ -53,8 +53,9 @@ public class PlayerCombat : MonoBehaviour
             Projectile projectile = projectiles[0];
             projectiles.RemoveAt(0);
             projectile.transform.parent = null;
-            projectile.Construct(StatsController.Instance.CrowDamage, this.tag);
             projectile.GetComponent<Rigidbody2D>().AddForce((inputs.mousePos - (Vector2)this.transform.position).normalized * projectileForce);
+            //first apply force, then construct, so that rotation can be applied
+            projectile.Construct(StatsController.Instance.CrowDamage, this.tag);
         }
     }
 
