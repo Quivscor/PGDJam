@@ -11,6 +11,13 @@ public class StoryEvent : MonoBehaviour
     public TextMeshProUGUI eventName;
 
     public bool wasPlayed = false;
+
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponentInChildren<AudioSource>();
+    }
     public void StartEvent()
     {
         PlayerInput.BlockPlayerInput(true);
@@ -25,6 +32,7 @@ public class StoryEvent : MonoBehaviour
         eventHolder.SetActive(false);
         PlayerInput.BlockPlayerInput(false);
         spritesHolder.SetActive(false);
+        audioSource.Play();
     }
 
     public void ChosenOption(int option)

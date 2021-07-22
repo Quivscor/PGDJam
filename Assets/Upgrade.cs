@@ -97,6 +97,8 @@ public class Upgrade : MonoBehaviour
         levelText.text = "Poziom " + level;
         costText.text = "Koszt " + cost;
 
+        GetComponent<AudioSource>().Play();
+
         CanBuySkill();
     }
 

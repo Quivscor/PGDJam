@@ -12,6 +12,7 @@ public class HUDController : MonoBehaviour
     [Header("References")]
     [SerializeField] private Image hpBar;
     [SerializeField] public Image[] manaOrbs;
+    [SerializeField] public Image[] healthOrbs;
     [SerializeField] private Image faithBar;
     [SerializeField] private TextMeshProUGUI upgradePointsText;
     [SerializeField] private GameObject upgradesHUD;
@@ -54,6 +55,22 @@ public class HUDController : MonoBehaviour
     public void UpdateHP()
     {
         hpBar.fillAmount = StatsController.Instance.HP / StatsController.Instance.MaxHP;
+
+        for (int i = 0; i < healthOrbs.Length; i++)
+        {
+            if (i < StatsController.Instance.HP && StatsController.Instance.HP <= StatsController.Instance.MaxHP)
+                healthOrbs[i].color = new Color(0.5849056f, 0f, 0f, 1f);
+            else if (i < StatsController.Instance.MaxHP)
+                healthOrbs[i].color = Color.white;
+            else
+                healthOrbs[i].color = new Color(0, 0, 0, 0);
+
+        }
+    }
+
+    public void AnimateHealth(int i)
+    {
+        healthOrbs[i].gameObject.GetComponent<Animator>().SetTrigger("HpChange");
     }
 
     public void UpdateMana()

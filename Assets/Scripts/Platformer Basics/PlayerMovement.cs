@@ -15,6 +15,11 @@ public class PlayerMovement : PlatformerActor
     [SerializeField] private float dashCd;
     [SerializeField] private float dashForce;
     [SerializeField] private float dashTime;
+
+    [Header("AudioSources")]
+    [SerializeField] private AudioSource jumpSource;
+    [SerializeField] private AudioSource dashSource;
+
     private float dashTimeCurrent;
     private bool hasDashedAirborne = false;
     private float dashCdCurrent;
@@ -45,6 +50,7 @@ public class PlayerMovement : PlatformerActor
         {
             if (inputs.jump && state != ActorMovementState.AIRBORNE)
             {
+                jumpSource.Play();
                 velocity.y += maxJumpVelocity;
                 state = ActorMovementState.AIRBORNE;
             }
@@ -78,6 +84,8 @@ public class PlayerMovement : PlatformerActor
                 hasDashedAirborne = true;
 
             state = ActorMovementState.DASH;
+
+            dashSource.Play();
         }
 
         if (dashTimeCurrent > 0)

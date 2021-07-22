@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public AudioClip hitting;
+
     private string userTag;
 
     private float damage;
@@ -49,6 +51,7 @@ public class Projectile : MonoBehaviour
         if(collision.TryGetComponent<Character>(out enemy))
         {
             enemy.GetHit(damage);
+            StatsController.Instance.PlayHittingEnemySound();
         }
         else if(collision.TryGetComponent<PlayerCombat>(out pc))
         {

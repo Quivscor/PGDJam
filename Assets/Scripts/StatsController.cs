@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Random = UnityEngine.Random;
+
 public class StatsController : Character
 {
     public static StatsController Instance = null;
 
     [SerializeField] private float maxMana;
     [SerializeField] private float maxFaith;
+
+    // SOUNDS
+    [SerializeField] private AudioSource gettingHitSource;
+    [SerializeField] private AudioSource hittingEnemySource;
+    [SerializeField] private AudioClip [] hurtClips;
 
     private float mana;
     private int upgradePoints;
@@ -57,6 +64,17 @@ public class StatsController : Character
         UpdateDebugDisplay();
     }
 
+    public void PlayRandomHitSound()
+    {
+        gettingHitSource.clip = hurtClips[Random.Range(0, hurtClips.Length)];
+        gettingHitSource.Play();
+    }
+
+    public void PlayHittingEnemySound()
+    {
+        hittingEnemySource.Play();
+    }
+
     public void UpdateDebugDisplay()
     {
         if (TestingButtons.Instance == null)
@@ -79,8 +97,10 @@ public class StatsController : Character
     public override void GetHit(float value)
     {
         base.GetHit(value);
+        HUDController.Instance.AnimateHealth((int)hp);
         HUDController.Instance.GetHitVignette();
         hpChanged.Invoke();
+        PlayRandomHitSound();
         UpdateDebugDisplay();
     }
 
