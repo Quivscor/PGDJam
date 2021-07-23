@@ -64,6 +64,7 @@ public class CombatAreaController : MonoBehaviour
             }
         }
         camera.Priority = 30;
+        MusicController.Instance.ToggleFightMusic(true);
     }
 
     public void TryEndCombat()
@@ -73,7 +74,7 @@ public class CombatAreaController : MonoBehaviour
             if (e.Target == player)
                 return;
         }
-
+        MusicController.Instance.ToggleFightMusic(false);
         camera.Priority = 8;
     }
 
