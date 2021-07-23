@@ -220,6 +220,7 @@ MonoBehaviour:
   timeToJumpApex: 0.5
   smoothTime: 0.1
   smoothTimeAirborne: 0.2
+  coyoteTime: 0.15
   dashCd: 3
   dashForce: 15
   dashTime: 0.2

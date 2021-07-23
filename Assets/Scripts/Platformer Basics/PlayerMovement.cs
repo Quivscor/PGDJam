@@ -11,6 +11,9 @@ public class PlayerMovement : PlatformerActor
     [SerializeField] private float timeToJumpApex;
     [SerializeField] private float smoothTime;
     [SerializeField] private float smoothTimeAirborne;
+    [SerializeField] private float coyoteTime = .15f;
+    private float coyoteTimeCurrent;
+    private bool landed = true;
 
     [SerializeField] private float dashCd;
     [SerializeField] private float dashForce;
@@ -46,14 +49,18 @@ public class PlayerMovement : PlatformerActor
     private void Update()
     {
         float targetVelocity;
+        coyoteTimeCurrent -= Time.deltaTime;
         RegisteredInputs inputs = PlayerInput.GetPlayerInput();
         if (!isForcedMoving)
         {
-            if (inputs.jump && state != ActorMovementState.AIRBORNE)
+            
+            if (inputs.jump && ((state != ActorMovementState.AIRBORNE || (state == ActorMovementState.AIRBORNE && coyoteTimeCurrent > 0)) 
+                && state != ActorMovementState.DASH))
             {
                 jumpSource.Play();
                 velocity.y += maxJumpVelocity;
                 state = ActorMovementState.AIRBORNE;
+                landed = false;
             }
             if (inputs.releasedJump)
             {
@@ -106,10 +113,28 @@ public class PlayerMovement : PlatformerActor
             {
                 state = ActorMovementState.GROUNDED;
                 hasDashedAirborne = false;
+                landed = true;
             }
             else if(!isForcedMoving)
+            {
                 state = ActorMovementState.AIRBORNE;
+                if(landed)
+                {
+                    coyoteTimeCurrent = coyoteTime;
+                    landed = false;
+                }   
+            }
         }
+        else if(!collisions.above)
+        {
+            state = ActorMovementState.AIRBORNE;
+            if (landed)
+            {
+                coyoteTimeCurrent = coyoteTime;
+                landed = false;
+            }
+        }
+
         if(isForcedMoving)
         {
             forcedMoveVelocity = velocity;
