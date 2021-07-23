@@ -21,7 +21,9 @@ public class CheckpointController : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        PlayerInput.BlockPlayerInput(true);
         FindObjectOfType<PlayerMovement>().gameObject.transform.position = lastCheckpoint.position;
         StatsController.Instance.HP = StatsController.Instance.MaxHP;
+        PlayerInput.BlockPlayerInput(false);
     }
 }

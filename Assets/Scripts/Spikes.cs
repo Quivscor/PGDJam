@@ -16,7 +16,7 @@ public class Spikes : MonoBehaviour
             mv.ForceMove((-mv.velocity.normalized + Vector2.up).normalized * knockbackForce);
             if (collision.transform.TryGetComponent<PlayerCombat>(out pc))
             {
-                pc.SendTakeDamageEvent(dmg);
+                pc.SendTakeDamageEvent(StatsController.Instance.MaxHP);
             }
         }
     }
