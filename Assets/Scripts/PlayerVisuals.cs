@@ -15,7 +15,7 @@ public class PlayerVisuals : MonoBehaviour
         renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public void HandleAnimation(Vector2 velocity, ActorMovementState state)
+    public void HandleAnimation(Vector2 velocity, ActorMovementState state, bool landed)
     {
         if (Mathf.Sign(velocity.x) > 0)
             renderer.flipX = false;
@@ -24,13 +24,14 @@ public class PlayerVisuals : MonoBehaviour
 
         animator.SetFloat("velocityX", velocity.x);
         animator.SetFloat("velocityY", velocity.y);
+        animator.SetBool("landed", landed);
 
         if(state == ActorMovementState.AIRBORNE)
         {
             animator.SetTrigger("airborne");
         }
 
-        if(state == ActorMovementState.DASH)
+        if(state == ActorMovementState.DASH && !dashTrigger)
         {
             animator.SetTrigger("dash");
             dashTrigger = true;
