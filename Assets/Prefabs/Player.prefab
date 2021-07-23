@@ -225,6 +225,7 @@ MonoBehaviour:
   dashTime: 0.2
   jumpSource: {fileID: 480914032888997282}
   dashSource: {fileID: 5025006687665159144}
+  velocity: {x: 0, y: 0}
 --- !u!114 &714440691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   crowSpawnSource: {fileID: 8220051136717749785}
   rotateSpeed: 0.2
   rotateRadius: 1
+  invulnerabilityTime: 1
 --- !u!114 &368066538
 MonoBehaviour:
   m_ObjectHideFlags: 0

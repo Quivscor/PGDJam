@@ -19,6 +19,9 @@ public class PlayerCombat : MonoBehaviour
     private float rotateAngle;
     public float rotateRadius;
 
+    public float invulnerabilityTime;
+    private float invulnerabilityTimeCurrent;
+
     public Action<float> TakeDamage;
 
     void Start()
@@ -30,6 +33,7 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         float time = Time.deltaTime;
+        invulnerabilityTimeCurrent -= time;
         if(projectiles.Count < StatsController.Instance.MaxCrowsNumber)
             projectileRespawnTimeCurrent += time;
         if(projectileRespawnTimeCurrent >= StatsController.Instance.TimeToSpawnCrow)
@@ -64,6 +68,15 @@ public class PlayerCombat : MonoBehaviour
 
     public void SendTakeDamageEvent(float damage)
     {
+        if (invulnerabilityTimeCurrent >= 0)
+            return;
+
         TakeDamage?.Invoke(damage);
+        invulnerabilityTimeCurrent = invulnerabilityTime;
+    }
+
+    public bool IsInvulnerable()
+    {
+        return invulnerabilityTimeCurrent > 0;
     }
 }

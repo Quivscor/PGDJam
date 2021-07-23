@@ -12,9 +12,12 @@ public class Spikes : MonoBehaviour
         if(collision.transform.CompareTag("Player"))
         {
             PlayerCombat pc;
+            collision.transform.TryGetComponent(out pc);
+            if (pc.IsInvulnerable())
+                return;
             PlayerMovement mv = collision.transform.GetComponent<PlayerMovement>();
-            mv.ForceMove((-mv.velocity.normalized + Vector2.up).normalized * knockbackForce);
-            if (collision.transform.TryGetComponent<PlayerCombat>(out pc))
+            mv.ForceMove((Vector2.up).normalized * knockbackForce, .5f);
+            if (pc)
             {
                 pc.SendTakeDamageEvent(dmg);
             }
