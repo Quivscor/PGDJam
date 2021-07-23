@@ -100,7 +100,11 @@ public class StatsController : Character
     #region HP
     public override void GetHit(float value)
     {
-        base.GetHit(value);
+        hp -= value;
+
+        if (hp <= 0)
+            CheckpointController.Instance.RespawnPlayer();
+
         HUDController.Instance.AnimateHealth((int)hp);
         HUDController.Instance.GetHitVignette();
         hpChanged.Invoke();
