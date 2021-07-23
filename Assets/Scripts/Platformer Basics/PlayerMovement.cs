@@ -130,7 +130,8 @@ public class PlayerMovement : PlatformerActor
         }
         else if(!collisions.above)
         {
-            state = ActorMovementState.AIRBORNE;
+            if(dashCdCurrent <= 0)
+                state = ActorMovementState.AIRBORNE;
             if (landed)
             {
                 coyoteTimeCurrent = coyoteTime;
@@ -149,7 +150,7 @@ public class PlayerMovement : PlatformerActor
 
     private void LateUpdate()
     {
-        playerVisuals.HandleAnimation(velocity, state);
+        playerVisuals.HandleAnimation(velocity, state, landed);
     }
 
     public void ForceMove(Vector2 force, float time = 1f)
