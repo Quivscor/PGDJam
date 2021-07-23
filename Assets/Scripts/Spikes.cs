@@ -11,7 +11,13 @@ public class Spikes : MonoBehaviour
     {
         if(collision.transform.CompareTag("Player"))
         {
-            collision.transform.GetComponent<PlayerMovement>().ForceMove((collision.transform.position - this.transform.position).normalized * knockbackForce);
+            PlayerCombat pc;
+            PlayerMovement mv = collision.transform.GetComponent<PlayerMovement>();
+            mv.ForceMove((-mv.velocity.normalized + Vector2.up).normalized * knockbackForce);
+            if (collision.transform.TryGetComponent<PlayerCombat>(out pc))
+            {
+                pc.SendTakeDamageEvent(dmg);
+            }
         }
     }
 }

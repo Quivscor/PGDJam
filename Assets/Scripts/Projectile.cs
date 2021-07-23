@@ -7,11 +7,12 @@ public class Projectile : MonoBehaviour
 {
     public AudioClip hitting;
 
-    private string userTag;
+    public string userTag;
 
     private float damage;
     private Collider2D collider;
     private Rigidbody2D rb2d;
+    private bool dealtDamage = false;
 
     private float timer;
     private bool startTimer = false;
@@ -51,9 +52,12 @@ public class Projectile : MonoBehaviour
         if (collision.CompareTag(userTag) || collision.CompareTag("NoCollisions") || collision.CompareTag("Projectile"))
             return;
 
+        if (dealtDamage)
+            return;
+
         Character enemy;
         PlayerCombat pc;
-        if(collision.TryGetComponent<Character>(out enemy))
+        if(collision.TryGetComponent<Character>(out enemy) && enemy.GetComponent<DestroyableBlock>() == null)
         {
             enemy.GetHit(damage);
             StatsController.Instance.PlayHittingEnemySound();
@@ -63,6 +67,7 @@ public class Projectile : MonoBehaviour
             pc.SendTakeDamageEvent(damage);
         }
 
+        dealtDamage = true;
         rb2d.velocity = Vector2.zero;
         Destroy(this.gameObject, .2f);
     }

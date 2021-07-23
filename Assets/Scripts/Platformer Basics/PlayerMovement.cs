@@ -24,7 +24,8 @@ public class PlayerMovement : PlatformerActor
     private bool hasDashedAirborne = false;
     private float dashCdCurrent;
 
-    private Vector2 velocity;
+    public Vector2 velocity;
+
     private float velocityXSmoothing;
     private float maxJumpVelocity;
     private float gravity;
