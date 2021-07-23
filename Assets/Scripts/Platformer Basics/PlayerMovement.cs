@@ -22,6 +22,7 @@ public class PlayerMovement : PlatformerActor
     [Header("AudioSources")]
     [SerializeField] private AudioSource jumpSource;
     [SerializeField] private AudioSource dashSource;
+    [SerializeField] private AudioSource runningSource;
 
     private float dashTimeCurrent;
     private bool hasDashedAirborne = false;
@@ -113,6 +114,8 @@ public class PlayerMovement : PlatformerActor
             {
                 state = ActorMovementState.GROUNDED;
                 hasDashedAirborne = false;
+                if(!landed)
+                    runningSource.Play();
                 landed = true;
             }
             else if(!isForcedMoving)
