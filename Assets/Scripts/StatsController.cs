@@ -38,6 +38,10 @@ public class StatsController : Character
     public float TimeToSpawnCrow { get => timeToSpawnCrow; set => timeToSpawnCrow = value; }
     public float CrowDamage { get => crowDamage; set => crowDamage = value; }
 
+    // MOVEMENT UNLOCKS
+    public bool canDash;
+    public bool canDestroyBlockades;
+
     public Action hpChanged;
     public Action manaChanged;
     public Action upgradePointsChanged;

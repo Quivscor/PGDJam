@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEnemy : PlatformerActor
+public class FlyingEnemy : PlatformerActor, IEnemy
 {
     private Character character;
-    public Transform target;
+    public Transform Target { get; set; }
     public float moveSpeed;
 
     public float damage;
@@ -23,13 +23,20 @@ public class FlyingEnemy : PlatformerActor
     public float minMoveRadius;
     public float maxMoveRadius;
 
+    public event CombatControllerEvent OnAggroPlayer;
+    public event CombatControllerEvent OnUnAggroPlayer;
+
+    public PlayerDetector detector;
+
     protected override void Awake()
     {
         base.Awake();
 
+        detector = GetComponentInChildren<PlayerDetector>();
+
         character = GetComponent<Character>();
-        GetComponentInChildren<PlayerDetector>().OnPlayerDetected += AggroOnPlayer;
-        GetComponentInChildren<PlayerDetector>().OnPlayerLeaveAggroRange += UnAggro;
+        detector.OnPlayerDetected += AggroOnPlayer;
+        detector.OnPlayerLeaveAggroRange += UnAggro;
 
         originPoint = (Vector2)this.transform.position;
         moveTarget = originPoint + Random.insideUnitCircle * Random.Range(minMoveRadius, maxMoveRadius);
@@ -38,7 +45,7 @@ public class FlyingEnemy : PlatformerActor
 
     private void Update()
     {
-        if(target != null)
+        if(Target != null)
         {
             float time = Time.deltaTime;
 
@@ -78,19 +85,23 @@ public class FlyingEnemy : PlatformerActor
 
     public void AggroOnPlayer(Transform player)
     {
-        target = player;
+        Target = player;
+        detector.GetComponent<CircleCollider2D>().radius *= 2;
+        OnAggroPlayer?.Invoke();
     }
 
     public void UnAggro()
     {
-        target = null;
+        Target = null;
+        detector.GetComponent<CircleCollider2D>().radius /= 2;
+        OnUnAggroPlayer?.Invoke();
     }
 
     private void Attack()
     {
         Projectile p = Instantiate(projectile, this.transform.position, Quaternion.identity, null);
         p.Construct(damage, this.tag);
-        p.GetComponent<Rigidbody2D>().AddForce((target.transform.position - this.transform.position).normalized * projectileForce);
+        p.GetComponent<Rigidbody2D>().AddForce((Target.transform.position - this.transform.position).normalized * projectileForce);
     }
 
     private IEnumerator UnlockMovement()

@@ -74,18 +74,21 @@ public class PlayerMovement : PlatformerActor
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocity, ref velocityXSmoothing, .3f);
 
         //dash
-        if(inputs.dash && dashCdCurrent <= 0 && !hasDashedAirborne)
+        if(StatsController.Instance.canDash)
         {
-            velocity.x = dashForce * Mathf.Sign(inputs.axis.x);
-            dashCdCurrent = dashCd;
-            dashTimeCurrent = dashTime;
-            velocity.y = 0;
-            if (state == ActorMovementState.AIRBORNE)
-                hasDashedAirborne = true;
+            if (inputs.dash && dashCdCurrent <= 0 && !hasDashedAirborne)
+            {
+                velocity.x = dashForce * Mathf.Sign(inputs.axis.x);
+                dashCdCurrent = dashCd;
+                dashTimeCurrent = dashTime;
+                velocity.y = 0;
+                if (state == ActorMovementState.AIRBORNE)
+                    hasDashedAirborne = true;
 
-            state = ActorMovementState.DASH;
+                state = ActorMovementState.DASH;
 
-            dashSource.Play();
+                dashSource.Play();
+            }
         }
 
         if (dashTimeCurrent > 0)

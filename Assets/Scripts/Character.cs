@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Character : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] protected float maxHp;
+    public Action<Character> OnDeath;
 
     protected float hp;
 
@@ -19,7 +21,13 @@ public class Character : MonoBehaviour
         hp -= value;
 
         if (hp <= 0)
-            Destroy(this.gameObject);
+            Die();
+    }
+
+    public virtual void Die()
+    {
+        OnDeath?.Invoke(this);
+        Destroy(this.gameObject);
     }
 
     public virtual void AddHp(float value)
