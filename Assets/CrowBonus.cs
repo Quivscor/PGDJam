@@ -9,6 +9,7 @@ public class CrowBonus : MonoBehaviour
         if(collision.GetComponentInParent<PlayerMovement>())
         {
             StatsController.Instance.UpgradeCrowsMaxNumber();
+            StatsController.Instance.PlayPickingRavenSound();
             Destroy(this.gameObject);
         }
     }
