@@ -19,7 +19,8 @@ public class Spikes : MonoBehaviour
             mv.ForceMove((Vector2.up).normalized * knockbackForce, .5f);
             if (pc)
             {
-                pc.SendTakeDamageEvent(StatsController.Instance.MaxHP);
+                //pc.SendTakeDamageEvent(StatsController.Instance.MaxHP);
+                pc.SendTakeDamageEvent(dmg);
             }
         }
     }

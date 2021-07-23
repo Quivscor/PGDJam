@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8851336719118844042}
   - component: {fileID: 8851336719118844041}
+  - component: {fileID: 2777240574962568146}
   m_Layer: 0
   m_Name: AreaVirtualCamera
   m_TagString: Untagged
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8851336719118844043}
-  m_LocalRotation: {x: 0.02926977, y: -0.588123, z: 0.021305772, w: 0.8079608}
+  m_LocalRotation: {x: 0.0008270434, y: 0.012683066, z: -0.000010490292, w: 0.99991924}
   m_LocalPosition: {x: -0.91999817, y: 0.06000042, z: -36.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -58,7 +59,10 @@ MonoBehaviour:
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 2
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -67,6 +71,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 8851336719687184715}
+--- !u!114 &2777240574962568146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851336719118844043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8851336719296142170
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +236,7 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+  m_HideOffsetInInspector: 0
 --- !u!1 &8851336720623149980
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,4 +282,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a45f8bb493f5d14daa397f7808824e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
+  enemies:
+  - {fileID: 0}
