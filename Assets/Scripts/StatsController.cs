@@ -14,6 +14,7 @@ public class StatsController : Character
     // SOUNDS
     [SerializeField] private AudioSource gettingHitSource;
     [SerializeField] private AudioSource hittingEnemySource;
+    [SerializeField] private AudioSource pickingRavenSource;
     [SerializeField] private AudioClip [] hurtClips;
 
     private float mana;
@@ -77,6 +78,11 @@ public class StatsController : Character
     public void PlayHittingEnemySound()
     {
         hittingEnemySource.Play();
+    }
+
+    public void PlayPickingRavenSound()
+    {
+        pickingRavenSource.Play();
     }
 
     public void UpdateDebugDisplay()
