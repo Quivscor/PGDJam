@@ -5,12 +5,20 @@ using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
 {
+	public static SettingsController Instance;
+
 	public Image img;
 	public AnimationCurve curve;
 	public GameObject settingsCanvas;
+	public GameObject aboutCanvas;
 	public bool isPaused;
 	[SerializeField] private Animator[] animators;
 
+    private void Awake()
+    {
+		if (Instance == null)
+			Instance = this;
+    }
 
     private void Start()
     {
@@ -24,14 +32,7 @@ public class SettingsController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
-            {
-				isPaused = false;
-				PlayerInput.BlockPlayerInput(false);
-				//gameObject.SetActive(false);
-				settingsCanvas.SetActive(isPaused);
-			}
-            else
+            if (!isPaused)
             {
 				isPaused = true;
 				PlayerInput.BlockPlayerInput(true);
@@ -47,6 +48,12 @@ public class SettingsController : MonoBehaviour
 		PlayerInput.BlockPlayerInput(toggle);
 		settingsCanvas.SetActive(toggle);
 
+	}
+
+	public void ToggleAboutCanvas(bool toggle)
+    {
+		settingsCanvas.SetActive(!toggle);
+		aboutCanvas.SetActive(toggle);
 	}
 
     public void FadeOutAndIn()

@@ -1365,6 +1365,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settings HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 4129441656845063879, guid: b7785812a6bfd3049ac05584f6ec2dc1,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129441656845063879, guid: b7785812a6bfd3049ac05584f6ec2dc1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129441656845063879, guid: b7785812a6bfd3049ac05584f6ec2dc1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129441656845063879, guid: b7785812a6bfd3049ac05584f6ec2dc1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5578737611917200224, guid: b7785812a6bfd3049ac05584f6ec2dc1,
         type: 3}
       propertyPath: m_LocalPosition.z
