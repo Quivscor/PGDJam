@@ -8,10 +8,13 @@ public class Projectile : MonoBehaviour
     public AudioClip hitting;
 
     public string userTag;
+    public ParticleSystem hitParticles;
+    public ParticleSystem trailParticles;
 
     private float damage;
     private Collider2D collider;
     private Rigidbody2D rb2d;
+    private SpriteRenderer renderer;
     private bool dealtDamage = false;
 
     private float timer;
@@ -23,6 +26,7 @@ public class Projectile : MonoBehaviour
     {
         collider = GetComponent<Collider2D>();
         rb2d = GetComponent<Rigidbody2D>();
+        renderer = GetComponentInChildren<SpriteRenderer>();
         collider.enabled = false;
     }
 
@@ -33,6 +37,8 @@ public class Projectile : MonoBehaviour
         StartCoroutine(EnableCollisions());
 
         startTimer = true;
+        if(trailParticles != null)
+            trailParticles.Play();
 
         FiredProjectile?.Invoke();
     }
@@ -68,13 +74,32 @@ public class Projectile : MonoBehaviour
         }
 
         dealtDamage = true;
+
+        if (hitParticles != null)
+            hitParticles.Play();
+        if(trailParticles != null)
+            trailParticles.Stop();
+
         rb2d.velocity = Vector2.zero;
-        Destroy(this.gameObject, .2f);
+        Destroy(this.renderer);
+        Destroy(this.gameObject, .55f);
     }
 
     public IEnumerator EnableCollisions()
     {
         yield return new WaitForSeconds(.2f);
         collider.enabled = true;
+    }
+
+    public void LateUpdate()
+    {
+        Vector2 dir = rb2d.velocity;
+        if (!startTimer && dir != Vector2.zero)
+            return;
+
+        //turn to face the direction
+        transform.right = dir;
+        if (dir.x < 0)
+            renderer.flipY = true;
     }
 }
