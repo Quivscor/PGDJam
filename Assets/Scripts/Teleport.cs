@@ -4,38 +4,33 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-
-    [SerializeField] private GameObject[] enemiesToKill;
     [SerializeField] private Transform teleportDestination;
     [SerializeField] private GameObject teleportSprite;
-    private bool isActive = false;
-    public bool IsActive { get => isActive; set => isActive = value; }
+    [SerializeField] private GameObject infoAboutTeleport;
 
-    private void Update()
-    {
-        if(!isActive)
-        {
-            foreach (GameObject enemy in enemiesToKill)
-            {
-                if (enemy != null)
-                    return;
-                ActivateTeleport();
-            }
-        }
-
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(isActive && collision.GetComponentInParent<PlayerMovement>())
+        if(collision.GetComponentInParent<PlayerMovement>())
+        {
+            infoAboutTeleport.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponentInParent<PlayerMovement>())
+        {
+            infoAboutTeleport.SetActive(false);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.GetComponentInParent<PlayerMovement>() && Input.GetKey(KeyCode.E))
         {
             collision.GetComponentInParent<PlayerMovement>().gameObject.transform.position = teleportDestination.position;
         }
     }
 
-    public void ActivateTeleport()
-    {
-        isActive = true;
-        teleportSprite.SetActive(true);
-    }
 }
