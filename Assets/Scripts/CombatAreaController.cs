@@ -60,7 +60,7 @@ public class CombatAreaController : MonoBehaviour
         {
             if(e is MonoBehaviour mb)
             {
-                targetGroup.AddMember(mb.gameObject.transform, 2f, 10);
+                targetGroup.AddMember(mb.gameObject.transform, 4f, 10);
             }
         }
         camera.Priority = 30;
