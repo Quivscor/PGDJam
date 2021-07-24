@@ -12,6 +12,8 @@ public class CombatAreaController : MonoBehaviour
     private CinemachineVirtualCamera camera;
     private CinemachineTargetGroup targetGroup;
 
+    public MapEvent mapEvent;
+
     public void Awake()
     {
         player = FindObjectOfType<PlayerCombat>().transform;
@@ -54,6 +56,8 @@ public class CombatAreaController : MonoBehaviour
             if (e.Target == player)
                 break;
         }
+        if (mapEvent != null)
+            mapEvent.StartEvent();
 
         targetGroup.AddMember(player, 5f, 10);
         foreach(IEnemy e in m_Enemies)
@@ -76,6 +80,8 @@ public class CombatAreaController : MonoBehaviour
         }
         MusicController.Instance.ToggleFightMusic(false);
         camera.Priority = 8;
+        if (mapEvent != null)
+            mapEvent.StopEvent();
     }
 
     public void RemoveDeadEnemyFromGroup(Character c)
