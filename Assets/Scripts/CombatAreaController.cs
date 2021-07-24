@@ -51,18 +51,27 @@ public class CombatAreaController : MonoBehaviour
 
     public void TryStartCombat()
     {
-        foreach(IEnemy e in m_Enemies)
+        for(int i = 0; i < m_Enemies.Count; i++)
         {
-            if (e.Target == player)
+            if (m_Enemies[i] == null)
+                continue;
+            if (m_Enemies[i].Target == player)
                 break;
         }
         if (mapEvent != null)
             mapEvent.StartEvent();
 
-        targetGroup.AddMember(player, 5f, 10);
-        foreach(IEnemy e in m_Enemies)
+        for (int i = 0; i < m_Enemies.Count; i++)
         {
-            if(e is MonoBehaviour mb)
+            m_Enemies[i].Target = player;
+        }
+
+        targetGroup.AddMember(player, 5f, 10);
+        for(int i = 0; i < m_Enemies.Count; i++)
+        {
+            if (m_Enemies[i] == null)
+                continue;
+            if (m_Enemies[i] is MonoBehaviour mb)
             {
                 targetGroup.AddMember(mb.gameObject.transform, 4f, 10);
             }
@@ -73,9 +82,11 @@ public class CombatAreaController : MonoBehaviour
 
     public void TryEndCombat()
     {
-        foreach (IEnemy e in m_Enemies)
+        for (int i = 0; i < m_Enemies.Count; i++)
         {
-            if (e.Target == player)
+            if (m_Enemies[i] == null)
+                continue;
+            if (m_Enemies[i].Target == player)
                 return;
         }
         MusicController.Instance.ToggleFightMusic(false);
