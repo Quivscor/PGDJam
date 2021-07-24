@@ -53,7 +53,7 @@ public class CombatAreaController : MonoBehaviour
     {
         for(int i = 0; i < m_Enemies.Count; i++)
         {
-            if (m_Enemies[i] == null)
+            if (enemies[i] == null)
                 continue;
             if (m_Enemies[i].Target == player)
                 break;
@@ -63,16 +63,20 @@ public class CombatAreaController : MonoBehaviour
 
         for (int i = 0; i < m_Enemies.Count; i++)
         {
+            if (enemies[i] == null)
+                continue;
             m_Enemies[i].Target = player;
         }
 
         targetGroup.AddMember(player, 5f, 10);
         for(int i = 0; i < m_Enemies.Count; i++)
         {
-            if (m_Enemies[i] == null)
+            if (enemies == null)
                 continue;
             if (m_Enemies[i] is MonoBehaviour mb)
             {
+                if (mb == null)
+                    break;
                 targetGroup.AddMember(mb.gameObject.transform, 4f, 10);
             }
         }
@@ -84,7 +88,7 @@ public class CombatAreaController : MonoBehaviour
     {
         for (int i = 0; i < m_Enemies.Count; i++)
         {
-            if (m_Enemies[i] == null)
+            if (enemies[i] == null)
                 continue;
             if (m_Enemies[i].Target == player)
                 return;
@@ -98,5 +102,7 @@ public class CombatAreaController : MonoBehaviour
     public void RemoveDeadEnemyFromGroup(Character c)
     {
         targetGroup.RemoveMember(c.transform);
+        enemies.Remove(c.gameObject);
+        m_Enemies.Remove(c.GetComponent<IEnemy>());
     }
 }

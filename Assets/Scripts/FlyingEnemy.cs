@@ -26,17 +26,17 @@ public class FlyingEnemy : PlatformerActor, IEnemy
     public event CombatControllerEvent OnAggroPlayer;
     public event CombatControllerEvent OnUnAggroPlayer;
 
-    public PlayerDetector detector;
+    public PlayerDetector Detector { get; set; }
 
     protected override void Awake()
     {
         base.Awake();
 
-        detector = GetComponentInChildren<PlayerDetector>();
+        Detector = GetComponentInChildren<PlayerDetector>();
 
         character = GetComponent<Character>();
-        detector.OnPlayerDetected += AggroOnPlayer;
-        detector.OnPlayerLeaveAggroRange += UnAggro;
+        Detector.OnPlayerDetected += AggroOnPlayer;
+        Detector.OnPlayerLeaveAggroRange += UnAggro;
 
         originPoint = (Vector2)this.transform.position;
         moveTarget = originPoint + Random.insideUnitCircle * Random.Range(minMoveRadius, maxMoveRadius);
@@ -86,14 +86,14 @@ public class FlyingEnemy : PlatformerActor, IEnemy
     public void AggroOnPlayer(Transform player)
     {
         Target = player;
-        detector.GetComponent<CircleCollider2D>().radius *= 2;
+        Detector.GetComponent<CircleCollider2D>().radius *= 2;
         OnAggroPlayer?.Invoke();
     }
 
     public void UnAggro()
     {
         Target = null;
-        detector.GetComponent<CircleCollider2D>().radius /= 2;
+        Detector.GetComponent<CircleCollider2D>().radius /= 2;
         OnUnAggroPlayer?.Invoke();
     }
 

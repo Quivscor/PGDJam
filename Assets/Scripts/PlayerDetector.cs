@@ -8,6 +8,13 @@ public class PlayerDetector : MonoBehaviour
     public Action<Transform> OnPlayerDetected;
     public Action OnPlayerLeaveAggroRange;
 
+    CircleCollider2D collider;
+
+    private void Awake()
+    {
+        collider = GetComponent<CircleCollider2D>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.CompareTag("Player"))
@@ -18,5 +25,16 @@ public class PlayerDetector : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
             OnPlayerLeaveAggroRange?.Invoke();
+    }
+
+    public bool ForceCheckPlayerInRange()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, collider.radius);
+        foreach(Collider2D col in hits)
+        {
+            if (col.tag == "Player")
+                return true;
+        }
+        return false;
     }
 }
