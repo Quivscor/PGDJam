@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2026295370708432811}
   - component: {fileID: 2026295370708432820}
   - component: {fileID: 2026295370708432821}
-  - component: {fileID: 2026295370708432822}
+  - component: {fileID: 8988293928331332662}
   m_Layer: 0
   m_Name: EnemyMoth
   m_TagString: Enemy
@@ -113,8 +113,7 @@ MonoBehaviour:
   lockTime: 1.5
   minMoveRadius: 5
   maxMoveRadius: 7
-  detector: {fileID: 0}
---- !u!114 &2026295370708432822
+--- !u!114 &8988293928331332662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,10 +122,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2026295370708432823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f39266e094066414c89450879248fe20, type: 3}
+  m_Script: {fileID: 11500000, guid: 4603cabc9593d2446946f645cd0254ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 30
+  dedmoth: {fileID: 21300000, guid: e508417ac614cc54ab2856700fe27e90, type: 3}
 --- !u!1 &2026295371096182705
 GameObject:
   m_ObjectHideFlags: 0
