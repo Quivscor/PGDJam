@@ -350,7 +350,7 @@ MonoBehaviour:
   smoothTimeAirborne: 0.2
   coyoteTime: 0.15
   dashCd: 3
-  dashForce: 15
+  dashForce: 19
   dashTime: 0.2
   jumpSource: {fileID: 480914032888997282}
   dashSource: {fileID: 5025006687665159144}

@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8412082735703170763, guid: 68777a488dc569d47889566ab002dbd1,
+  m_Sprite: {fileID: -4994458450831493607, guid: 68777a488dc569d47889566ab002dbd1,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -167,3 +167,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitting: {fileID: 8300000, guid: f1988938a191125449477551e460071d, type: 3}
   userTag: 
+  hitParticles: {fileID: 0}
+  trailParticles: {fileID: 0}

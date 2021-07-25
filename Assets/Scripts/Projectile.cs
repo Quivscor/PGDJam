@@ -66,7 +66,6 @@ public class Projectile : MonoBehaviour
         if(collision.TryGetComponent<Character>(out enemy) && enemy.GetComponent<DestroyableBlock>() == null)
         {
             enemy.GetHit(damage);
-            StatsController.Instance.PlayHittingEnemySound();
         }
         else if(collision.TryGetComponent<PlayerCombat>(out pc))
         {
@@ -81,6 +80,10 @@ public class Projectile : MonoBehaviour
             trailParticles.Stop();
 
         rb2d.velocity = Vector2.zero;
+
+        if(userTag == "Player")
+            StatsController.Instance.PlayHittingEnemySound();
+
         Destroy(this.renderer);
         Destroy(this.gameObject, .55f);
     }

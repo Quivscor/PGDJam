@@ -60,9 +60,21 @@ public class StatsController : Character
     {
         base.Start();
         Mana = maxMana;
-        UpgradePoints = 250;
+
+        if(Application.isEditor)
+        {
+            MaxCrowsNumber = 3;
+            UpgradePoints = 250;
+        }
+        else
+        {
+            MaxCrowsNumber = 0;
+            UpgradePoints = 0;
+        }
+
+
         Faith = 0;
-        MaxCrowsNumber = 1;
+
         TimeToSpawnCrow = 3f;
         CrowDamage = 10;
         HUDController.Instance.UpdateWholeUI();
