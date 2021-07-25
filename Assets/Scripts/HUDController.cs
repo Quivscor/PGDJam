@@ -17,6 +17,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradePointsText;
     [SerializeField] private GameObject upgradesHUD;
     [SerializeField] private Animator vignetteAnimator;
+    [SerializeField] private TextMeshProUGUI bonusText;
+    [SerializeField] private Animator bonusTextAnimator;
 
     private void Awake()
     {
@@ -67,6 +69,12 @@ public class HUDController : MonoBehaviour
                 healthOrbs[i].gameObject.SetActive(false);
 
         }
+    }
+
+    public void AnimateBonusPoints(int bonus)
+    {
+        bonusText.text = "+ " + bonus + " pkt Bogobojności";
+        bonusTextAnimator.SetTrigger("BonusPopup");
     }
 
     public void AnimateHealth(int i)
