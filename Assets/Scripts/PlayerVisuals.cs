@@ -15,6 +15,11 @@ public class PlayerVisuals : MonoBehaviour
         renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
+    public void SetDmg()
+    {
+        animator.SetTrigger("dmg");
+    }
+
     public void HandleAnimation(Vector2 velocity, ActorMovementState state, bool landed)
     {
         if (Mathf.Sign(velocity.x) > 0)

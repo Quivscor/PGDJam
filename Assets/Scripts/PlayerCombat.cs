@@ -14,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform projectileHolder;
     public AudioClip crowSpawnSound;
     public AudioSource crowSpawnSource;
+    private PlayerVisuals visuals;
 
     public float rotateSpeed;
     private float rotateAngle;
@@ -27,6 +28,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         projectiles = new List<Projectile>();
+        visuals = GetComponent<PlayerVisuals>();
     }
 
     // Update is called once per frame
@@ -71,6 +73,7 @@ public class PlayerCombat : MonoBehaviour
         if (invulnerabilityTimeCurrent >= 0)
             return;
 
+        visuals.SetDmg();
         TakeDamage?.Invoke(damage);
         invulnerabilityTimeCurrent = invulnerabilityTime;
     }
