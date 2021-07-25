@@ -5,6 +5,7 @@ using System;
 
 public class PlayerCombat : MonoBehaviour
 {
+    public static PlayerCombat Instance;
     // Start is called before the first frame update
 
     public float projectileForce;
@@ -24,6 +25,18 @@ public class PlayerCombat : MonoBehaviour
     private float invulnerabilityTimeCurrent;
 
     public Action<float> TakeDamage;
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+
+    public void AddForceForRavens(float value)
+    {
+        projectileForce += value;
+    }
 
     void Start()
     {

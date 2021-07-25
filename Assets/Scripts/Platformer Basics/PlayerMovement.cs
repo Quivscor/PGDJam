@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : PlatformerActor
 {
+
+    public static PlayerMovement Instance;
+
     [Header("Movement data")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float maxJumpHeight;
@@ -15,7 +18,7 @@ public class PlayerMovement : PlatformerActor
     private float coyoteTimeCurrent;
     private bool landed = true;
 
-    [SerializeField] private float dashCd;
+    [SerializeField] public float dashCd;
     [SerializeField] private float dashForce;
     [SerializeField] private float dashTime;
 
@@ -40,6 +43,14 @@ public class PlayerMovement : PlatformerActor
 
     private PlayerVisuals playerVisuals;
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (Instance == null)
+            Instance = this;
+    }
     private void Start()
     {
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);

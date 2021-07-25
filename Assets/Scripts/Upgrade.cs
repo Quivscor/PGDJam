@@ -64,6 +64,18 @@ public class Upgrade : MonoBehaviour
             StatsController.Instance.UpgradeCrowsMaxNumber();
         }
 
+        if (skillType == SkillType.CrowsSpeed)
+        {
+            StatsController.Instance.SpendUpgradePoints(cost);
+            PlayerCombat.Instance.AddForceForRavens(100);
+        }
+
+        if (skillType == SkillType.DashCooldown)
+        {
+            StatsController.Instance.SpendUpgradePoints(cost);
+            PlayerMovement.Instance.dashCd -= 0.3f;
+        }
+
         LevelUpSkill();
     }
 
@@ -98,7 +110,7 @@ public class Upgrade : MonoBehaviour
     {
         level++;
         //cost = level + 1;
-        cost += 5;
+        cost = 5;
 
         levelText.text = "Poziom " + level;
         costText.text = "Koszt " + cost;
@@ -116,5 +128,6 @@ public enum SkillType
     CrowsDamage,
     CrowsCooldown,
     CrowsSpeed,
-    MaxCrowsNumber
+    MaxCrowsNumber,
+    DashCooldown
 }
