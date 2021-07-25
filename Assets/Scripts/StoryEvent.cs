@@ -7,7 +7,6 @@ public class StoryEvent : MonoBehaviour
 {
     public GameObject eventHolder;
     public GameObject spritesHolder;
-    public GameObject eventContinuation;
     public EventRewards[] rewards;
     public TextMeshProUGUI eventName;
 
@@ -38,13 +37,6 @@ public class StoryEvent : MonoBehaviour
 
         if (isContinuation)
             EventsController.Instance.SetEventInSanctuarium(false);
-
-        if (eventContinuation != null && !EventsController.Instance.IsEventInSanctuarium())
-        {
-            eventContinuation.SetActive(true);
-            EventsController.Instance.SetEventInSanctuarium(true);
-        }
-
     }
 
     public void ChosenOption(int option)
@@ -60,6 +52,12 @@ public class StoryEvent : MonoBehaviour
         StatsController.Instance.AddHp(rewards[option].hp);
         StatsController.Instance.AddMana(rewards[option].mana);
 
+        if (rewards[option].eventContinuation != null && !EventsController.Instance.IsEventInSanctuarium())
+        {
+            rewards[option].eventContinuation.SetActive(true);
+            EventsController.Instance.SetEventInSanctuarium(true);
+        }
+     
         EndEvent();
     }
 }
@@ -71,5 +69,6 @@ public struct EventRewards
     public int upgradePoints;
     public float hp;
     public float mana;
+    public GameObject eventContinuation;
 
 }
