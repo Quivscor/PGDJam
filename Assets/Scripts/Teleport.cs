@@ -29,8 +29,13 @@ public class Teleport : MonoBehaviour
     {
         if(collision.GetComponentInParent<PlayerMovement>() && Input.GetKey(KeyCode.E))
         {
-            collision.GetComponentInParent<PlayerMovement>().gameObject.transform.position = teleportDestination.position;
+            ScreenFadeController.Instance.FadeOutAndInWithTeleport(teleportDestination);
         }
+    }
+
+    public void TeleportPlayer()
+    {
+        FindObjectOfType<PlayerMovement>().gameObject.transform.position = teleportDestination.position;
     }
 
 }
