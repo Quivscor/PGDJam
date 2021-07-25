@@ -26,11 +26,11 @@ public class PlayerInput : MonoBehaviour
             return;
 
         inputs.axis = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        inputs.jump = Input.GetKeyDown(KeyCode.Space);
-        inputs.releasedJump = Input.GetKeyUp(KeyCode.Space);
+        inputs.jump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+        inputs.releasedJump = Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow);
         inputs.fire = Input.GetMouseButtonDown(0);
         inputs.mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        inputs.dash = Input.GetKeyDown(KeyCode.LeftShift);
+        inputs.dash = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetMouseButtonDown(1);
     }
 
     public static RegisteredInputs GetPlayerInput()

@@ -204,6 +204,7 @@ public class StatsController : Character
     {
         UpgradePoints += value;
         upgradePointsChanged.Invoke();
+        HUDController.Instance.AnimateBonusPoints(value);
         UpdateDebugDisplay();
     }
 
