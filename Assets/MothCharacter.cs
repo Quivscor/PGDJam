@@ -26,6 +26,7 @@ public class MothCharacter : Character
     public override void Die()
     {
         OnDeath?.Invoke(this);
+        pd.GetComponent<CircleCollider2D>().radius = 0.1f;
         Destroy(animator);
         renderer.sprite = dedmoth;
         

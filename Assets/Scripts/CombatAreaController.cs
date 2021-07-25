@@ -78,7 +78,8 @@ public class CombatAreaController : MonoBehaviour
             {
                 if (mb == null)
                     break;
-                targetGroup.AddMember(mb.gameObject.transform, 4f, 10);
+                if(targetGroup.FindMember(mb.transform) == -1)
+                    targetGroup.AddMember(mb.gameObject.transform, 4f, 10);
             }
         }
         camera.Priority = 30;
@@ -104,6 +105,7 @@ public class CombatAreaController : MonoBehaviour
     public void RemoveDeadEnemyFromGroup(Character c)
     {
         targetGroup.RemoveMember(c.transform);
+        targetGroup.DoUpdate();
         enemies.Remove(c.gameObject);
         m_Enemies.Remove(c.GetComponent<IEnemy>());
     }
