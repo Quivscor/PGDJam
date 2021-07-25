@@ -104,6 +104,23 @@ public class FlyingEnemy : PlatformerActor, IEnemy
         p.GetComponent<Rigidbody2D>().AddForce((Target.transform.position - this.transform.position).normalized * projectileForce);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        PlayerCombat pc;
+        collision.transform.TryGetComponent(out pc);
+        if (pc == null)
+            return;
+        if (pc.IsInvulnerable())
+            return;
+        PlayerMovement mv = collision.transform.GetComponent<PlayerMovement>();
+        mv.ForceMove((Vector2.up).normalized * 10, .5f);
+        if (pc)
+        {
+            //pc.SendTakeDamageEvent(StatsController.Instance.MaxHP);
+            pc.SendTakeDamageEvent(1);
+        }
+    }
+
     private IEnumerator UnlockMovement()
     {
         yield return new WaitForSeconds(lockTime);
