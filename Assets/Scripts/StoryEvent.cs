@@ -24,6 +24,7 @@ public class StoryEvent : MonoBehaviour
         PlayerInput.BlockPlayerInput(true);
         CinematicController.Instance.StartCinematic();
         eventHolder.SetActive(true);
+        spritesHolder.SetActive(false);
     }
 
     public void EndEvent()
@@ -32,7 +33,7 @@ public class StoryEvent : MonoBehaviour
         wasPlayed = true;
         eventHolder.SetActive(false);
         PlayerInput.BlockPlayerInput(false);
-        spritesHolder.SetActive(false);
+        
         audioSource.Play();
 
         if (isContinuation)

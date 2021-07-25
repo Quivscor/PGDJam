@@ -581,20 +581,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventHolder: {fileID: 8775461416548828471}
   spritesHolder: {fileID: 367333819738497700}
-  eventContinuation: {fileID: 0}
   rewards:
   - faith: 0
     upgradePoints: 5
     hp: 0
     mana: 0
+    eventContinuation: {fileID: 0}
   - faith: 0
     upgradePoints: 10
     hp: 0
     mana: 0
+    eventContinuation: {fileID: 0}
   - faith: 0
     upgradePoints: 15
     hp: 0
     mana: 0
+    eventContinuation: {fileID: 0}
   eventName: {fileID: 5380161992132330934}
   isContinuation: 1
   wasPlayed: 0
@@ -805,6 +807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4045193988225446045}
   - component: {fileID: 5527413196917696107}
+  - component: {fileID: 571667041818697666}
   m_Layer: 0
   m_Name: Sprite 1
   m_TagString: Untagged
@@ -865,9 +868,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 150
-  m_Sprite: {fileID: -2841370749941692211, guid: 7fde94a815484344da8eaf7a446691d9,
-    type: 3}
-  m_Color: {r: 0.29578733, g: 1, b: 0, a: 0.44705883}
+  m_Sprite: {fileID: 21300000, guid: 80cab5de4b4cd68429ac99268a31f7c3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -877,6 +879,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &571667041818697666
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4176346405276137408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa5998324cff8084abb704a1e6394c0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4585340092575454955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1254,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.038757324, y: 3.1136932}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1244,7 +1265,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.4180908, y: 8.852936}
   m_EdgeRadius: 0
 --- !u!114 &1328246069814428827
 MonoBehaviour:
