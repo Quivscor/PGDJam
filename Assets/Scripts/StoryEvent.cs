@@ -71,5 +71,6 @@ public struct EventRewards
     public int upgradePoints;
     public float hp;
     public float mana;
+    public GameObject eventContinuation;
 
 }
