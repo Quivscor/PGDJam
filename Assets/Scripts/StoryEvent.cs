@@ -7,9 +7,11 @@ public class StoryEvent : MonoBehaviour
 {
     public GameObject eventHolder;
     public GameObject spritesHolder;
+    public GameObject eventContinuation;
     public EventRewards[] rewards;
     public TextMeshProUGUI eventName;
 
+    public bool isContinuation;
     public bool wasPlayed = false;
 
     private AudioSource audioSource;
@@ -33,6 +35,16 @@ public class StoryEvent : MonoBehaviour
         PlayerInput.BlockPlayerInput(false);
         spritesHolder.SetActive(false);
         audioSource.Play();
+
+        if (isContinuation)
+            EventsController.Instance.SetEventInSanctuarium(false);
+
+        if (eventContinuation != null && !EventsController.Instance.IsEventInSanctuarium())
+        {
+            eventContinuation.SetActive(true);
+            EventsController.Instance.SetEventInSanctuarium(true);
+        }
+
     }
 
     public void ChosenOption(int option)
