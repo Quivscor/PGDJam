@@ -6,6 +6,7 @@ public class MapButton : MonoBehaviour
 {
     public MapEvent mapEvent;
     private bool triggered = false;
+    public Sprite pressed;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,6 +16,7 @@ public class MapButton : MonoBehaviour
             if(p.userTag == "Player" && !triggered)
             {
                 mapEvent.StartEvent();
+                GetComponent<SpriteRenderer>().sprite = pressed;
                 triggered = true;
             }
         }
