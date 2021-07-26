@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class GamePauser : MonoBehaviour
 {
+    public Teleport teleportToBase;
 
+    public void BackToSanctuarium()
+    {
+        SettingsController.Instance.PauseGame(false);
+        ScreenFadeController.Instance.FadeOutAndInWithTeleport(teleportToBase.teleportDestination);
+
+    }
     public void UnPause()
     {
         SettingsController.Instance.PauseGame(false);

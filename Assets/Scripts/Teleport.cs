@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    [SerializeField] private Transform teleportDestination;
+    [SerializeField] public Transform teleportDestination;
     [SerializeField] private GameObject teleportSprite;
     [SerializeField] private GameObject infoAboutTeleport;
 
