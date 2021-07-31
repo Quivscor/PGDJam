@@ -20,6 +20,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bonusText;
     [SerializeField] private Animator bonusTextAnimator;
 
+ 
     private void Awake()
     {
         if (Instance == null)

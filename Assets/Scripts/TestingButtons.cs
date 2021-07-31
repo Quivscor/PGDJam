@@ -19,14 +19,18 @@ public class TestingButtons : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-            buttons.SetActive(!buttons.activeSelf);
-
-        if (Input.GetKeyDown(KeyCode.F2))
+        if(Application.isEditor)
         {
-            StatsController.Instance.UpdateDebugDisplay();
-            stats.SetActive(!stats.activeSelf);
+            if (Input.GetKeyDown(KeyCode.F1))
+                buttons.SetActive(!buttons.activeSelf);
+
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                StatsController.Instance.UpdateDebugDisplay();
+                stats.SetActive(!stats.activeSelf);
+            }
         }
+
 
     }
 }

@@ -11,10 +11,11 @@ public class SettingsController : MonoBehaviour
 	public AnimationCurve curve;
 	public GameObject settingsCanvas;
 	public GameObject aboutCanvas;
+	public GameObject intro;
 	public bool isPaused;
 	[SerializeField] private Animator[] animators;
-
-    private void Awake()
+	private bool introPlayed = false;
+	private void Awake()
     {
 		if (Instance == null)
 			Instance = this;
@@ -22,6 +23,8 @@ public class SettingsController : MonoBehaviour
 
     private void Start()
     {
+		PlayerInput.BlockPlayerInput(true);
+
         foreach (Animator animator in animators)
         {
 			animator.keepAnimatorControllerStateOnDisable = true;
@@ -38,6 +41,13 @@ public class SettingsController : MonoBehaviour
 				PlayerInput.BlockPlayerInput(true);
 				settingsCanvas.SetActive(isPaused);
 			}
+        }
+
+		if(!introPlayed && Input.GetKeyDown(KeyCode.Space))
+        {
+			introPlayed = true;
+			PlayerInput.BlockPlayerInput(false);
+			intro.SetActive(false);
         }
 
     }
